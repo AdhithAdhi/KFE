@@ -25,6 +25,13 @@ namespace KFE
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<AdminLogin> AdminLogins { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Gallery> Galleries { get; set; }
         public virtual DbSet<HitCounter> HitCounters { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<SliderImage> SliderImages { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

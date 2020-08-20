@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <div class="form-group input-group mb-3">
-                    <asp:TextBox ID="Password" class="form-control" placeholder="Password"
+                    <asp:TextBox ID="UserPassword" class="form-control" placeholder="Password"
                         runat="server" TextMode="Password"></asp:TextBox>
                     <div class="input-group-append">
                         <div class="input-group-text">

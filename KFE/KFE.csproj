@@ -222,6 +222,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdiminCategories.aspx" />
     <Content Include="AdminChangePass.aspx" />
     <Content Include="AdminGallery.aspx" />
     <Content Include="AdminHome.aspx" />
@@ -245,25 +246,25 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Admin.Master" />
-    <Content Include="HitCountModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HitCountModel.edmx</DependentUpon>
-      <LastGenOutput>HitCountModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="HitCountModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HitCountModel.edmx</DependentUpon>
-      <LastGenOutput>HitCountModel.cs</LastGenOutput>
-    </Content>
     <Content Include="Index.aspx" />
+    <Content Include="KfeModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>KfeModel.edmx</DependentUpon>
+      <LastGenOutput>KfeModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="KfeModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>KfeModel.edmx</DependentUpon>
+      <LastGenOutput>KfeModel.cs</LastGenOutput>
+    </Content>
     <Content Include="KFE_128.ico" />
     <Content Include="LoginLayout.Master" />
-    <EntityDeploy Include="HitCountModel.edmx">
+    <EntityDeploy Include="KfeModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>HitCountModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>KfeModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="HitCountModel.edmx.diagram">
-      <DependentUpon>HitCountModel.edmx</DependentUpon>
+    <Content Include="KfeModel.edmx.diagram">
+      <DependentUpon>KfeModel.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\kfefresh.com - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\kfefresh.com - Web Deploy1.pubxml" />
@@ -2143,6 +2144,13 @@
     <Content Include="Bundle.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdiminCategories.aspx.cs">
+      <DependentUpon>AdiminCategories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdiminCategories.aspx.designer.cs">
+      <DependentUpon>AdiminCategories.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin.Master.cs">
       <DependentUpon>Admin.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2178,6 +2186,9 @@
     <Compile Include="AdminLogin.aspx.designer.cs">
       <DependentUpon>AdminLogin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AdminLogin.cs">
+      <DependentUpon>KfeModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="AdminLogout.aspx.cs">
       <DependentUpon>AdminLogout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2188,27 +2199,18 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Category.cs">
+      <DependentUpon>KfeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Gallery.cs">
+      <DependentUpon>KfeModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="App_Code\HfeClass.cs" />
     <Compile Include="HitCounter.cs">
-      <DependentUpon>HitCountModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="HitCountModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HitCountModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="HitCountModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HitCountModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="HitCountModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HitCountModel.edmx</DependentUpon>
+      <DependentUpon>KfeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
@@ -2216,6 +2218,21 @@
     </Compile>
     <Compile Include="Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="KfeModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KfeModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KfeModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KfeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KfeModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KfeModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="LoginLayout.Master.cs">
       <DependentUpon>LoginLayout.Master</DependentUpon>
@@ -2227,6 +2244,7 @@
     <Compile Include="Models\Gallery.cs" />
     <Compile Include="Models\Products.cs" />
     <Compile Include="Models\Slider.cs" />
+    <Compile Include="MyClass\Categories.cs" />
     <Compile Include="MyClass\HitCount.cs" />
     <Compile Include="AdminProductView.aspx.cs">
       <DependentUpon>AdminProductView.aspx</DependentUpon>
@@ -2234,6 +2252,12 @@
     </Compile>
     <Compile Include="AdminProductView.aspx.designer.cs">
       <DependentUpon>AdminProductView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Order.cs">
+      <DependentUpon>KfeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Product.cs">
+      <DependentUpon>KfeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AdminSliderView.aspx.cs">
@@ -2247,6 +2271,12 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="SliderImage.cs">
+      <DependentUpon>KfeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>KfeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

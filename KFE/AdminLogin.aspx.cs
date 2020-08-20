@@ -19,7 +19,7 @@ namespace KFE
         protected void Login_Click(object sender, EventArgs e)
         {
             var username = Username.Text; 
-            var password = Crypto.Hash(Password.Text);
+            var password = Crypto.Hash(UserPassword.Text);
             hfe.cmd = new SqlCommand("select * from AdminLogin where UserName=@us and Password=@pa");
 
             hfe.cmd.Parameters.AddWithValue("@us", username);
