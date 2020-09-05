@@ -16,6 +16,8 @@ namespace KFE
     {
         public int Id { get; set; }
         public string ImagePath { get; set; }
-        public string Tag { get; set; }
+        public int Tag { get; set; }
+    
+        public virtual Category Category { get; set; }
     }
 }

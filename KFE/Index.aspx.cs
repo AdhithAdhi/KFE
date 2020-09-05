@@ -15,6 +15,7 @@ namespace KFE
         public List<Slider> Sliders = new List<Slider>();
         public List<Products> Products = new List<Products>();
         public List<GalleryWithTag> galleryWithTags = new List<GalleryWithTag>();
+        public MyClass.Categories categories = new MyClass.Categories();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)

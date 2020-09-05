@@ -15,10 +15,13 @@ namespace KFE
     public partial class Order
     {
         public int OrderId { get; set; }
-        public int UserId { get; set; }
+        public int CustomerId { get; set; }
         public int ProductId { get; set; }
         public System.DateTime Date { get; set; }
         public decimal Price { get; set; }
         public string Status { get; set; }
+    
+        public virtual Customer Customer { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

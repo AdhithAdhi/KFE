@@ -228,6 +228,7 @@
     <Content Include="AdminHome.aspx" />
     <Content Include="AdminLogin.aspx" />
     <Content Include="AdminLogout.aspx" />
+    <Content Include="AdminOrders.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -2196,10 +2197,20 @@
     <Compile Include="AdminLogout.aspx.designer.cs">
       <DependentUpon>AdminLogout.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AdminOrders.aspx.cs">
+      <DependentUpon>AdminOrders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminOrders.aspx.designer.cs">
+      <DependentUpon>AdminOrders.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Category.cs">
+      <DependentUpon>KfeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Customer.cs">
       <DependentUpon>KfeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Gallery.cs">
@@ -2245,6 +2256,7 @@
     <Compile Include="Models\Products.cs" />
     <Compile Include="Models\Slider.cs" />
     <Compile Include="MyClass\Categories.cs" />
+    <Compile Include="MyClass\GalleryController.cs" />
     <Compile Include="MyClass\HitCount.cs" />
     <Compile Include="AdminProductView.aspx.cs">
       <DependentUpon>AdminProductView.aspx</DependentUpon>
@@ -2253,6 +2265,7 @@
     <Compile Include="AdminProductView.aspx.designer.cs">
       <DependentUpon>AdminProductView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MyClass\ProductsController.cs" />
     <Compile Include="Order.cs">
       <DependentUpon>KfeModel.tt</DependentUpon>
     </Compile>
@@ -2273,9 +2286,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="SliderImage.cs">
-      <DependentUpon>KfeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="User.cs">
       <DependentUpon>KfeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">

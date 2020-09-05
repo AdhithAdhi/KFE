@@ -18,6 +18,21 @@
                             <label for="exampleInputEmail1">Product Name</label>
                             <asp:TextBox ID="img_NameText" required="" class="form-control" placeholder="Name" runat="server"></asp:TextBox>
                         </div>
+                            <div class="form-group">
+                                <label for="inputStatus">Select Category</label>
+                                <select id="ddlFruits" class="form-control custom-select" onchange="SetSelectedText(this)">
+                                    
+                                    <option selected disabled>Select one</option>
+                                    <%foreach(KFE.Category gwt in categories.GetCategories()) 
+                                        { 
+                                    %>
+                                    <option value="<%:gwt.Id %>"><%:gwt.Name %></option>
+                                    <%}
+                                    %>
+                                </select>
+                                <input type="hidden" id="hfFruitName" name="FruitName" />
+                                <label class="text text-sm text-warning">Must select tag</label>
+                            </div>
                         <div class="form-group">
                             <label for="customFile">Product Image</label>
 
@@ -37,6 +52,10 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Product Price</label>
                             <asp:TextBox ID="PriceText" required="" class="form-control" placeholder="Price" runat="server" TextMode="Number"></asp:TextBox>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Current Stock</label>
+                            <asp:TextBox ID="StockText" required="" class="form-control" placeholder="Stock Count" runat="server" TextMode="Number"></asp:TextBox>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Product Description</label>
@@ -62,8 +81,8 @@
             <asp:GridView class="table table-bordered table-striped" ID="GridView1" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="SqlDataSource1" OnRowDeleting="SliderRowDeleting">
                 <Columns>
                     <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title" />
-                    <asp:BoundField DataField="Description" HeaderText="Description" SortExpression="Description" />
                     <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" />
+                    <asp:BoundField DataField="StockCount" HeaderText="StockCount" SortExpression="StockCount" />
                     <asp:CommandField ShowDeleteButton="True" ShowEditButton="True">
                     <ControlStyle CssClass="btn btn-primary" />
                     </asp:CommandField>
@@ -132,5 +151,9 @@
         $(document).ready(function () {
             bsCustomFileInput.init();
         });
+        function SetSelectedText(ddlFruits) {
+            var selectedText = ddlFruits.options[ddlFruits.selectedIndex].value;
+            document.getElementById("hfFruitName").value = selectedText;
+        }
     </script>
 </asp:Content>

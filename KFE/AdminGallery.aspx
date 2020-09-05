@@ -40,10 +40,10 @@
                                 <select id="ddlFruits" class="form-control custom-select" onchange="SetSelectedText(this)">
                                     
                                     <option selected disabled>Select one</option>
-                                    <%foreach(KFE.Models.GalleryWithTag gwt in GalleryTags.Tags) 
+                                    <%foreach(KFE.Category gwt in categories.GetCategories()) 
                                         { 
                                     %>
-                                    <option value="<%:gwt.Tag %>"><%:gwt.ImageName %></option>
+                                    <option value="<%:gwt.Id %>"><%:gwt.Name %></option>
                                     <%}
                                     %>
                                 </select>
@@ -62,7 +62,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Available Sliders</h3>
+                    <h3 class="card-title">Available Gallery</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -71,7 +71,6 @@
                     <asp:GridView ID="GridView1" class="table table-bordered table-striped"  runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="SqlDataSource1" OnRowDeleting="SliderRowDeleting" OnSelectedIndexChanging="SliderRowViewing">
                         <Columns>
                             <asp:BoundField DataField="ImagePath" HeaderText="ImagePath" SortExpression="ImagePath" />
-                            <asp:BoundField DataField="Tag" HeaderText="Tag" SortExpression="Tag" />
                             <asp:CommandField SelectText="View" ShowDeleteButton="True" ShowSelectButton="True">
                             <ControlStyle CssClass="btn btn-primary" />
                             </asp:CommandField>

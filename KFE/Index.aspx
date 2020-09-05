@@ -244,9 +244,9 @@
                     <div class="filters">
                         <ul>
                             <li class="active" data-filter="*">All</li>
-                            <%for (int i = 0; i < GalleryTags.Tags.Length; i++)
+                            <%foreach (KFE.Category cat in categories.GetCategories())
                             { %>
-                            <li data-filter=".<%:GalleryTags.Tags[i].Tag %>"><%:GalleryTags.Tags[i].ImageName %></li>
+                            <li data-filter=".<%:cat.SF %>"><%:cat.Name %></li>
                             <%}%>
                         </ul>
                     </div>

@@ -109,6 +109,22 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="/AdiminCategories" class="nav-link">
+                                <i class="nav-icon fas fa-tasks"></i>
+                                <p>
+                                    Categories
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/AdminOrders" class="nav-link">
+                                <i class="nav-icon fas fa-shopping-cart"></i>
+                                <p>
+                                    Orders
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="/AdminSliderView" class="nav-link">
                                 <i class="nav-icon fas fa-image"></i>
                                 <p>
@@ -160,16 +176,7 @@
             <!-- Content Header (Page header) -->
             <div class="content-header">
                 <div class="container-fluid">
-                    <div class="row mb-2">
-                       <%-- <div class="col-sm-6">
-                        </div><!-- /.col -->
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Dashboard v3</li>
-                            </ol>
-                        </div><!-- /.col -->--%>
-                    </div><!-- /.row -->
+                    
                 </div><!-- /.container-fluid -->
             </div>
             <!-- /.content-header -->

@@ -7,15 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace KFE
 {
-    public partial class Admin : System.Web.UI.MasterPage
+    public partial class AdminOrders : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["adminId"] == null)
-            {
-                Response.Redirect("/AdminLogin");
-            }
-        }
 
+        }
     }
 }

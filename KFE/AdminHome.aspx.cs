@@ -24,5 +24,10 @@ namespace KFE
             ht.DeleteAll();
             Response.Redirect(Request.RawUrl);
         }
+
+        protected void Timer1_Tick(object sender, EventArgs e)
+        {
+            Label1.Text = DateTime.Now.ToString("hh:mm:ss");
+        }
     }
 }

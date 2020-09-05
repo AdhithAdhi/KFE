@@ -14,10 +14,22 @@ namespace KFE
     
     public partial class Product
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Product()
+        {
+            this.Orders = new HashSet<Order>();
+        }
+    
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string ImagePath { get; set; }
-        public int Price { get; set; }
+        public decimal Price { get; set; }
+        public int CategoryId { get; set; }
+        public decimal StockCount { get; set; }
+    
+        public virtual Category Category { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

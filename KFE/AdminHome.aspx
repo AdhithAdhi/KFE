@@ -7,7 +7,40 @@
     <form id="form1" runat="server">
         <div class="container-fluid">
             <h2>Admin Home</h2>
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-6">
+                    <asp:ScriptManager ID="ScriptManager1"
+                        runat="server">
+                    </asp:ScriptManager>
 
+                    <asp:Timer ID="Timer1" runat="server" Interval="100" OnTick="Timer1_Tick">
+                    </asp:Timer>
+
+                    <asp:UpdatePanel ID="UpdatePanel1"
+                        runat="server">
+
+                        <ContentTemplate>
+
+                            <asp:Label ID="Label1" runat="server" Font-Bold="True" ></asp:Label>
+
+                        </ContentTemplate>
+
+                        <Triggers>
+
+                            <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick"></asp:AsyncPostBackTrigger>
+
+                        </Triggers>
+
+                    </asp:UpdatePanel>
+
+                    <br />
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
             <div class="card card-secondary">
                 
               <div class="card-header">

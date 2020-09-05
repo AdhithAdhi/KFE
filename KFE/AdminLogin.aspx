@@ -31,7 +31,7 @@
                         </div>
                     </div>
                 </div>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="Password" CssClass="text-danger" ErrorMessage="Must enter password"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="UserPassword" CssClass="text-danger" ErrorMessage="Must enter password"></asp:RequiredFieldValidator>
                <%-- <div class="form-group">
                     <div class="icheck-primary">
                         <input type="checkbox" id="remember">
