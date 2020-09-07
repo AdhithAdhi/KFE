@@ -13,8 +13,10 @@ namespace KFE
     {
         HfeClass hfe = new HfeClass();
         public List<Slider> Sliders = new List<Slider>();
-        public List<Products> Products = new List<Products>();
+        public List<KFE.Models.Products> Products = new List<KFE.Models.Products>();
         public List<GalleryWithTag> galleryWithTags = new List<GalleryWithTag>();
+        MyClass.GalleryController galleryController = new MyClass.GalleryController();
+        MyClass.ProductsController productsController = new MyClass.ProductsController();
         public MyClass.Categories categories = new MyClass.Categories();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -38,25 +40,29 @@ namespace KFE
         }
         public void LoadProducts()
         {
-            hfe.cmd = new SqlCommand("select * from Products");
-            hfe.getdata();
-            if (hfe.dt.Rows.Count > 0)
-            {
-                Products.Clear();
-                for (int i = 0; i < hfe.dt.Rows.Count; i++)
-                    Products.Add(new Products((int)hfe.dt.Rows[i]["Id"], hfe.dt.Rows[i]["Title"].ToString(), hfe.dt.Rows[i]["Description"].ToString(), hfe.dt.Rows[i]["ImagePath"].ToString()));
-            }
+            var products=productsController.GetAllProducts();
+            Products.Clear();
+            for (int i = 0; i < products.Count; i++)
+                Products.Add(new Models.Products(products[i].Id, products[i].Title, products[i].Description, products[i].ImagePath));
+
+            //hfe.cmd = new SqlCommand("select * from Products");
+            //hfe.getdata();
+            //if (hfe.dt.Rows.Count > 0)
+            //{}
         }
         public void LoadGalleryItems()
         {
-            hfe.cmd = new SqlCommand("select * from Gallery");
-            hfe.getdata();
-            if (hfe.dt.Rows.Count > 0)
-            {
-                galleryWithTags.Clear();
-                for (int i = 0; i < hfe.dt.Rows.Count; i++)
-                    galleryWithTags.Add(new GalleryWithTag((int)hfe.dt.Rows[i]["Id"], hfe.dt.Rows[i]["ImagePath"].ToString(), hfe.dt.Rows[i]["Tag"].ToString()));
-            }
+            var galleries = galleryController.GetAllGalleries();
+            galleryWithTags.Clear();
+            for (int i = 0; i < galleries.Count; i++)
+                galleryWithTags.Add(new GalleryWithTag(galleries[i].Id, galleries[i].ImagePath, categories.GetCategoryByID(Convert.ToInt32(galleries[i].Tag)).SF));
+
+            //hfe.cmd = new SqlCommand("select * from Gallery");
+            //hfe.getdata();
+            //if (hfe.dt.Rows.Count > 0)
+            //{
+               
+            //}
         }
 
     }
