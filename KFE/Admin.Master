@@ -207,12 +207,12 @@
     </div>
     <!-- ./wrapper -->
     <!-- REQUIRED SCRIPTS -->
-    <!-- jQuery -->
+  <%--  <!-- jQuery -->
     <script src="template/Admin/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="template/Admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE -->
-    <script src="template/Admin/dist/js/adminlte.js"></script>
+    <script src="template/Admin/dist/js/adminlte.js"></script>--%>
    <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
     </asp:ContentPlaceHolder>
 </body>

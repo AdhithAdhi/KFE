@@ -259,6 +259,7 @@
       <LastGenOutput>KfeModel.cs</LastGenOutput>
     </Content>
     <Content Include="KFE_128.ico" />
+    <Content Include="Login.aspx" />
     <Content Include="LoginLayout.Master" />
     <EntityDeploy Include="KfeModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -276,6 +277,7 @@
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Images\KFE_128.png" />
     <Content Include="AdminProductView.aspx" />
+    <Content Include="Register.aspx" />
     <Content Include="Shop.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -2246,6 +2248,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>KfeModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
     <Compile Include="LoginLayout.Master.cs">
       <DependentUpon>LoginLayout.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2268,11 +2277,19 @@
     </Compile>
     <Compile Include="MyClass\ProductsController.cs" />
     <Compile Include="MyClass\SliderController.cs" />
+    <Compile Include="MyClass\UserController.cs" />
     <Compile Include="Order.cs">
       <DependentUpon>KfeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Product.cs">
       <DependentUpon>KfeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
     <Compile Include="Shop.aspx.cs">
       <DependentUpon>Shop.aspx</DependentUpon>
