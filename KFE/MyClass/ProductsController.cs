@@ -44,6 +44,16 @@ namespace KFE.MyClass
             return path;
         }
 
+        public Product GetProductBy(int id)
+        {
+            Product product= new Product();
+            using (Kfe_Fresh_DBEntities dc = new Kfe_Fresh_DBEntities())
+            {
+                product = dc.Products.FirstOrDefault(x => x.Id == id);
+            }
+            return product;
+        }
+
         //public void ProductStockChange(Product product)
         //{
 

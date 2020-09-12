@@ -249,7 +249,8 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Admin.Master" />
     <Content Include="Index.aspx" />
-    <Content Include="ItemView.aspx" />
+    <Content Include="Oops.aspx" />
+    <Content Include="ProductView.aspx" />
     <Content Include="KfeModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>KfeModel.edmx</DependentUpon>
@@ -2251,12 +2252,21 @@
     <Compile Include="Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ItemView.aspx.cs">
-      <DependentUpon>ItemView.aspx</DependentUpon>
+    <Compile Include="MyClass\CartController.cs" />
+    <Compile Include="MyClass\EncryptDecrypt.cs" />
+    <Compile Include="Oops.aspx.cs">
+      <DependentUpon>Oops.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ItemView.aspx.designer.cs">
-      <DependentUpon>ItemView.aspx</DependentUpon>
+    <Compile Include="Oops.aspx.designer.cs">
+      <DependentUpon>Oops.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProductView.aspx.cs">
+      <DependentUpon>ProductView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProductView.aspx.designer.cs">
+      <DependentUpon>ProductView.aspx</DependentUpon>
     </Compile>
     <Compile Include="KfeModel.Context.cs">
       <AutoGen>True</AutoGen>

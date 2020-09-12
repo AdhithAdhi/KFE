@@ -1,5 +1,4 @@
-﻿using KFE.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,9 +9,9 @@ namespace KFE
 {
     public partial class Shop : System.Web.UI.Page
     {
-        public List<Slider> Sliders = new List<Slider>();
+        public List<Models.Slider> Sliders = new List<Models.Slider>();
 
-        public List<KFE.Models.Products> Products = new List<KFE.Models.Products>();
+        public List<Product> Products = new List<Product>();
         MyClass.SliderController sliderController = new MyClass.SliderController();
         MyClass.ProductsController productsController = new MyClass.ProductsController();
         protected void Page_Load(object sender, EventArgs e)
@@ -30,7 +29,7 @@ namespace KFE
             {
                 Sliders.Clear();
                 for (int i = 0; i < sliders.Count; i++)
-                    Sliders.Add(new Slider(sliders[i].Id, sliders[i].ImagePath));
+                    Sliders.Add(new Models.Slider(sliders[i].Id, sliders[i].ImagePath));
             }
         }
         public void LoadProducts()
@@ -38,7 +37,7 @@ namespace KFE
             var products = productsController.GetAllProducts();
             Products.Clear();
             for (int i = 0; i < products.Count; i++)
-                Products.Add(new Models.Products(products[i].Id, products[i].Title, products[i].Description, products[i].ImagePath));
+                Products.Add(products[i]);
 
             //hfe.cmd = new SqlCommand("select * from Products");
             //hfe.getdata();

@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace KFE
 {
-    public partial class ItemView : System.Web.UI.Page
+    public partial class Oops : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

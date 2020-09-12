@@ -62,37 +62,21 @@
         <!-- ./col -->
         <div class="row mt-5">
             <%="" %>
-            <%foreach (KFE.Models.Products product in Products)
+            <%foreach (KFE.Product product in Products)
                 { %>
             <div class="col-lg-3 col-6">
-                <div class="card card-secondary card-outline">
+                <div class="card card-success card-outline">
+                    <div class="card-header">
+                        <img src="https://static.kfefresh.com/Images/Products/<%:product.ImagePath%>" style="width:100%" alt="Product Image">
+                    </div>
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="product-image-thumb">
-                                    <img src="https://static.kfefresh.com/Images/Products/<%:product.ImagePath%>" alt="Product Image">
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <h4 class="card-title text-bold"><%:product.Title %></h4>
-
-                                <%if (product.Description.Length < 45)
-                                    { %>
-                                <p class="card-text">
-                                    <%:product.Description%></label>
-                                    <%}
-                                        else
-                                        { %>
-
-                                <p class="card-text"><%:product.Description.Substring(0, 42) + "..."%></p>
-                                <%} %>
-                            </div>
-                        </div>
+                        <h4 class="card-title text-bold"><%:product.Title %></h4>
+                        
+                                <p class="card-text">₹ <%:product.Price%>/Kg</p>
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="card-link">View</a>
-                        <a href="#" class="card-link">Add to Cart</a>
+                        <a href="/ProductView?Product=<%:KFE.MyClass.EncryptDecrypt.Encrypt(HttpUtility.UrlEncode(product.Id.ToString())) %>" class="card-link btn btn-success">View</a>
+                        <a href="#" class="card-link btn btn-outline-success">Add to Cart</a>
                     </div>
                 </div>
             </div>
