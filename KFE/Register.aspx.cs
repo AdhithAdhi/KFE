@@ -23,13 +23,13 @@ namespace KFE
             var phone = PhoneText.Text;
             var adr = adr_Textarea.Text;
             var pass = Crypto.Hash(UserPassword.Text);
-            var dob = DateTime.ParseExact(DoBTextBox.Text, "dd/MM/yyyy", null); ;
+            var pin = Convert.ToInt32(PinCodeTextBox.Text);
             bool result = userController.AddCustomer(new Customer()
             {
                 Name = name,
                 Email = mail,
                 Phone = phone,
-                DoB = dob,
+                Pin = pin,
                 Address = adr,
                 Password = pass
 
