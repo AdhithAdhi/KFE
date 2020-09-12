@@ -13,7 +13,8 @@ namespace KFE
         MyClass.UserController userController = new MyClass.UserController();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Session.Abandon();
+            Session.Clear();
         }
 
         protected void RegisterBtn_Click(object sender, EventArgs e)
@@ -36,7 +37,7 @@ namespace KFE
             });
             if (result)
             {
-                HttpContext.Current.Response.Write("<script>alert('Registration Successfull...!');</script>");
+                HttpContext.Current.Response.Write("<script>alert('Registration Successfull...!\n Redirecting to login page');</script>");
             }
             else
             {

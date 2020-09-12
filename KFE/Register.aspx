@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LoginLayout.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="KFE.Register" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <title>User Register</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server"><div class="login-logo">
         <a href="/Index"><b>KFE </b>Register</a>
@@ -41,14 +42,12 @@
                     </div>
                 </div>
                 <div class="form-group input-group mb-3">
-                    <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                        <asp:TextBox ID="PinCodeTextBox" class="form-control datetimepicker-input" required="" data-target="#reservationdate" placeholder="Pincode"
-                            runat="server" TextMode="Number"></asp:TextBox>
-                        <div class="input-group-append">
+                    <asp:TextBox ID="PinCodeTextBox" class="form-control datetimepicker-input" required="" data-target="#reservationdate" placeholder="Pincode"
+                        runat="server" TextMode="Number"></asp:TextBox>
+                    <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-map-pin"></span>
                         </div>
-                    </div>
                     </div>
 
                 </div>
@@ -117,8 +116,7 @@
         <!-- /.login-card-body -->
     </div>
     <div class="callout callout-info">
-        <h5><i class="fas fa-info"></i>Note:</h5>
-        This page has been enhanced for printing. Click the print button at the bottom of the invoice to test.
+        By clicking Register you agree to our <a class="text-primary">Terms and Conditions</a>.
            
     </div>
 </asp:Content>
@@ -130,22 +128,6 @@
 <script src="template/Admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 <!-- Bootstrap Switch -->
 <!-- Page script -->
-    <script>$(function () {
-            //Date range picker
-            $('#reservationdate').datetimepicker({
-                format: 'L'
-            });
-            //Date range picker
-            $('#reservation').daterangepicker()
-            //Date range picker with time picker
-            $('#reservationtime').daterangepicker({
-                timePicker: true,
-                timePickerIncrement: 30,
-                locale: {
-                    format: 'MM/DD/YYYY hh:mm A'
-                }
-            })
-
-        })
+    <script>
 </script>
 </asp:Content>

@@ -229,7 +229,7 @@
     <Content Include="AdminLogin.aspx" />
     <Content Include="AdminLogout.aspx" />
     <Content Include="AdminOrders.aspx" />
-    <Content Include="Cart.aspx" />
+    <Content Include="MyCart.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -279,6 +279,8 @@
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Images\KFE_128.png" />
     <Content Include="AdminProductView.aspx" />
+    <Content Include="MyOrders.aspx" />
+    <Content Include="MyPersonalInfo.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="Shop.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -2145,6 +2147,7 @@
     <Content Include="template\user\assets\js\scrollreveal.min.js" />
     <Content Include="template\user\assets\js\slick.js" />
     <Content Include="template\user\assets\js\waypoints.min.js" />
+    <Content Include="Logout.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -2212,16 +2215,15 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Cart.aspx.cs">
-      <DependentUpon>Cart.aspx</DependentUpon>
+    <Compile Include="MyCart.aspx.cs">
+      <DependentUpon>MyCart.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Cart.aspx.designer.cs">
-      <DependentUpon>Cart.aspx</DependentUpon>
+    <Compile Include="MyCart.aspx.designer.cs">
+      <DependentUpon>MyCart.aspx</DependentUpon>
     </Compile>
     <Compile Include="Cart.cs">
       <DependentUpon>KfeModel.tt</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Category.cs">
       <DependentUpon>KfeModel.tt</DependentUpon>
@@ -2302,6 +2304,20 @@
     <Compile Include="MyClass\ProductsController.cs" />
     <Compile Include="MyClass\SliderController.cs" />
     <Compile Include="MyClass\UserController.cs" />
+    <Compile Include="MyOrders.aspx.cs">
+      <DependentUpon>MyOrders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyOrders.aspx.designer.cs">
+      <DependentUpon>MyOrders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyPersonalInfo.aspx.cs">
+      <DependentUpon>MyPersonalInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyPersonalInfo.aspx.designer.cs">
+      <DependentUpon>MyPersonalInfo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Order.cs">
       <DependentUpon>KfeModel.tt</DependentUpon>
     </Compile>
@@ -2344,6 +2360,13 @@
     </Compile>
     <Compile Include="User.Master.designer.cs">
       <DependentUpon>User.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

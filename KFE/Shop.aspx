@@ -4,6 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+    <div class="container">
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <%="" %>
@@ -32,7 +33,7 @@
                     {
             %>
             <div class="carousel-item active">
-                <img class="d-block w-100" src="/Images/Sliders/<%:Sliders[i].ImagePath %>" alt="" />
+                <img class="d-block w-100" src="https://static.kfefresh.com/Images/Sliders/<%:Sliders[i].ImagePath %>" alt="" />
             </div>
             <%
                 }
@@ -41,7 +42,7 @@
             %>
             <!-- Item -->
             <div class="carousel-item">
-                <img class="d-block w-100" src="/Images/Sliders/<%:Sliders[i].ImagePath %>" alt="" />
+                <img class="d-block w-100" src="https://static.kfefresh.com/Images/Sliders/<%:Sliders[i].ImagePath %>" alt="" />
             </div>
             <!-- // Item -->
             <%
@@ -58,25 +59,44 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-    <div class="container">
         <!-- ./col -->
-        <div class="row">
-
+        <div class="row mt-5">
+            <%="" %>
+            <%foreach (KFE.Models.Products product in Products)
+                { %>
             <div class="col-lg-3 col-6">
-                <div class="card card-primary card-outline">
+                <div class="card card-secondary card-outline">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="product-image-thumb">
+                                    <img src="https://static.kfefresh.com/Images/Products/<%:product.ImagePath%>" alt="Product Image">
+                                </div>
+                            </div>
 
-                        <p class="card-text">
-                            Some quick example text to build on the card title and make up the bulk of the card's
-                  content.
-               
-                        </p>
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
+                            <div class="col-md-6">
+                                <h4 class="card-title text-bold"><%:product.Title %></h4>
+
+                                <%if (product.Description.Length < 45)
+                                    { %>
+                                <p class="card-text">
+                                    <%:product.Description%></label>
+                                    <%}
+                                        else
+                                        { %>
+
+                                <p class="card-text"><%:product.Description.Substring(0, 42) + "..."%></p>
+                                <%} %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="card-link">View</a>
+                        <a href="#" class="card-link">Add to Cart</a>
                     </div>
                 </div>
             </div>
+            <%} %>
         </div>
         <!-- /.row -->
     </div>

@@ -12,12 +12,15 @@ namespace KFE
     {
         public List<Slider> Sliders = new List<Slider>();
 
+        public List<KFE.Models.Products> Products = new List<KFE.Models.Products>();
         MyClass.SliderController sliderController = new MyClass.SliderController();
+        MyClass.ProductsController productsController = new MyClass.ProductsController();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
                 LoadSliderImages();
+                LoadProducts();
             }
         }
         public void LoadSliderImages()
@@ -29,6 +32,18 @@ namespace KFE
                 for (int i = 0; i < sliders.Count; i++)
                     Sliders.Add(new Slider(sliders[i].Id, sliders[i].ImagePath));
             }
+        }
+        public void LoadProducts()
+        {
+            var products = productsController.GetAllProducts();
+            Products.Clear();
+            for (int i = 0; i < products.Count; i++)
+                Products.Add(new Models.Products(products[i].Id, products[i].Title, products[i].Description, products[i].ImagePath));
+
+            //hfe.cmd = new SqlCommand("select * from Products");
+            //hfe.getdata();
+            //if (hfe.dt.Rows.Count > 0)
+            //{}
         }
     }
 }

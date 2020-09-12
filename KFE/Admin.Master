@@ -124,6 +124,14 @@
                                 </p>
                             </a>
                         </li>
+                         <li class="nav-item">
+                            <a href="/AdminPinNumbers" class="nav-link">
+                                <i class="nav-icon fas fa-shopping-cart"></i>
+                                <p>
+                                    Delivery Points
+                                </p>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a href="/AdminSliderView" class="nav-link">
                                 <i class="nav-icon fas fa-image"></i>

@@ -36,7 +36,7 @@ namespace KFE
             //Response.Redirect("/test");
             try
             {
-                uploader.FTPUpload(customFile, "Gallery", fileName);
+                uploader.FTPUpload(customFile, "Products", fileName);
             }
             catch (Exception ex)
             {
@@ -79,7 +79,7 @@ namespace KFE
             if (path != "")
             {
 
-                HttpContext.Current.Response.Write("<script>alert('" + uploader.DeleteFile("Gallery", path) +"!');</script>");
+                HttpContext.Current.Response.Write("<script>alert('" + uploader.DeleteFile("Products", path) +"!');</script>");
             }
 
             //hfe.cmd = new SqlCommand("select * from Products where Id =@id");

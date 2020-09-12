@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LoginLayout.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="KFE.Login" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <title>User Login</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
      <div class="login-logo">

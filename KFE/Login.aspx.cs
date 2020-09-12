@@ -14,7 +14,8 @@ namespace KFE
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Session.Abandon();
+            Session.Clear();
         }
 
         protected void LoginBtn_Click(object sender, EventArgs e)
