@@ -108,7 +108,7 @@
                         {
                         %>
                             <div class="carousel-item active">
-                                <img class="d-block w-100" src="/Images/Sliders/<%:Sliders[i].ImagePath %>" alt="" />
+                                <img class="d-block w-100" src="https://static.kfefresh.com/Images/Sliders/<%:Sliders[i].ImagePath %>" alt="" />
                             </div>
                         <%
                             }
@@ -117,7 +117,7 @@
                         %>
                             <!-- Item -->
                             <div class="carousel-item">
-                                <img class="d-block w-100" src="/Images/Sliders/<%:Sliders[i].ImagePath %>" alt="" />
+                                <img class="d-block w-100" src="https://static.kfefresh.com/Images/Sliders/<%:Sliders[i].ImagePath %>" alt="" />
                             </div>
                             <!-- // Item -->
                         <%
@@ -178,7 +178,7 @@
                 <div class="col-lg-6 col-md-6 col-xs-12">
                    <div class="right-text-content">
                         <p>
-                            <a rel="nofollow noopener" href="/" class="text-bold" target="_parent">KFE' s</a> aim is to provide fresh fish at your doorstep. We collect freshly catched fish directly from the local fisherman and sells them at resaonable prices to our customers.
+                            <a rel="nofollow noopener" href="/" class="text-bold" target="_parent">KFE' s</a> aim is to provide fresh fish at your doorstep. We collect freshly catched fish directly from the local fisherman and sells them at resonable prices to our customers.
                             <br/>
                             <br/>
 
@@ -211,7 +211,7 @@
 
                         %> <div class="item author-item">
                             <div class="member-thumb">
-                                <img src="/Images/Products/<%:Products[i].ImagePath %>" alt="" width="360" height="300" />
+                                <img src="https://static.kfefresh.com/Images/Products/<%:Products[i].ImagePath %>" alt="" width="360" height="300" />
                                 <div class="hover-effect">
                                     <div class="hover-content">
 

@@ -51,13 +51,13 @@ namespace KFE
         protected global::System.Web.UI.WebControls.TextBox PhoneText;
 
         /// <summary>
-        /// DoBTextBox control.
+        /// PinCodeTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox DoBTextBox;
+        protected global::System.Web.UI.WebControls.TextBox PinCodeTextBox;
 
         /// <summary>
         /// adr_Textarea control.

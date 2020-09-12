@@ -11,9 +11,9 @@ namespace KFE
 {
     public partial class AdminGallery : System.Web.UI.Page
     {
-        HfeClass hfe = new HfeClass();
         public MyClass.Categories categories = new MyClass.Categories();
-        MyClass.GalleryController galleryController = new MyClass.GalleryController(); 
+        MyClass.GalleryController galleryController = new MyClass.GalleryController();
+        MyClass.FtpFileUpload uploader = new MyClass.FtpFileUpload();
         protected void Page_Load(object sender, EventArgs e)
         {
         }
@@ -36,7 +36,7 @@ namespace KFE
             //Response.Redirect("/test");
             try
             {
-                customFile.PostedFile.SaveAs(Path.Combine(directory, fileName));
+                uploader.FTPUpload(customFile, "Products", fileName);
             }
             catch (Exception ex)
             {
@@ -67,23 +67,11 @@ namespace KFE
             int id = Convert.ToInt16(GridView1.DataKeys[e.RowIndex].Values["Id"].ToString());
             var path = galleryController.DeleteById(id);
 
-
             if (path != "")
-                File.Delete(Server.MapPath("Images") + "\\Products\\" + path);
-            //hfe.cmd = new SqlCommand("select * from Gallery where Id =@id");
-            //hfe.cmd.Parameters.AddWithValue("id", id);
-            //hfe.getdata();
-            //if (hfe.dt.Rows.Count > 0)
-            //{
-            //    hfe.cmd = new SqlCommand("delete from Gallery where Id =@id");
-            //    hfe.cmd.Parameters.AddWithValue("id", id);
+            {
 
-            //    if (hfe.setData() > 0)
-            //    {
-            //        string filepath = hfe.dt.Rows[0]["ImagePath"].ToString();
-            //        File.Delete(Server.MapPath("Images") + "\\Gallery\\" + filepath);
-            //    }
-            //}
+                HttpContext.Current.Response.Write("<script>alert('" + uploader.DeleteFile("Products", path) + "!');</script>");
+            }
         }
 
         protected void SliderRowViewing(object sender, GridViewSelectEventArgs e)
@@ -92,15 +80,6 @@ namespace KFE
 
             Response.Redirect("\\Images" + "\\Gallery\\" + galleryController.GetGalleryById(id).ImagePath);
 
-            //hfe.cmd = new SqlCommand("select * from Gallery where Id =@id");
-            //hfe.cmd.Parameters.AddWithValue("id", id);
-            //hfe.getdata();
-            //if (hfe.dt.Rows.Count > 0)
-            //{
-            //    string filepath = hfe.dt.Rows[0]["ImagePath"].ToString();
-            //    Response.Redirect("\\Images" + "\\Gallery\\" + galleryController.GetGalleryById(id).ImagePath);
-            //    //Response.Write("<script>window.open ('\\Images\\Sliders\\" + filepath + "','_blank');</script>");
-            //}
         }
     }
 }

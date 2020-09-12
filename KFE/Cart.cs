@@ -12,15 +12,12 @@ namespace KFE
     using System;
     using System.Collections.Generic;
     
-    public partial class Order
+    public partial class Cart
     {
-        public int OrderId { get; set; }
+        public int CartId { get; set; }
         public int CustomerId { get; set; }
         public int ProductId { get; set; }
-        public System.DateTime Date { get; set; }
-        public decimal Price { get; set; }
-        public string Status { get; set; }
-        public decimal Quantity { get; set; }
+        public decimal Count { get; set; }
         public string Extras { get; set; }
     
         public virtual Product Product { get; set; }

@@ -12,9 +12,9 @@ namespace KFE
 {
     public partial class AdminProductView : System.Web.UI.Page
     {
-        HfeClass hfe = new HfeClass();
         MyClass.ProductsController productsController = new MyClass.ProductsController();
         public MyClass.Categories categories = new MyClass.Categories();
+        MyClass.FtpFileUpload uploader = new MyClass.FtpFileUpload();
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -33,15 +33,10 @@ namespace KFE
                 Reload();
             }
             string fileName = name + "_" + Guid.NewGuid().ToString() + "_" + customFile.FileName;
-            var directory = Server.MapPath("~/Images/Products/"); 
-            if (!Directory.Exists(directory))
-            {
-                Directory.CreateDirectory(directory);
-            }
             //Response.Redirect("/test");
             try
             {
-                customFile.PostedFile.SaveAs(Path.Combine(directory, fileName));
+                uploader.FTPUpload(customFile, "Gallery", fileName);
             }
             catch (Exception ex)
             {
@@ -82,7 +77,10 @@ namespace KFE
 
 
             if (path != "")
-                File.Delete(Server.MapPath("Images") + "\\Products\\" + path);
+            {
+
+                HttpContext.Current.Response.Write("<script>alert('" + uploader.DeleteFile("Gallery", path) +"!');</script>");
+            }
 
             //hfe.cmd = new SqlCommand("select * from Products where Id =@id");
             //hfe.cmd.Parameters.AddWithValue("id", id);

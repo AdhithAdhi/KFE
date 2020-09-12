@@ -42,13 +42,13 @@
                 </div>
                 <div class="form-group input-group mb-3">
                     <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                        <asp:TextBox ID="DoBTextBox" class="form-control datetimepicker-input" required="" data-target="#reservationdate" placeholder="DoB"
-                            runat="server"></asp:TextBox>
-                        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                            <div class="input-group-text">
-                                <span class="fas fa-calendar"></span>
-                            </div>
+                        <asp:TextBox ID="PinCodeTextBox" class="form-control datetimepicker-input" required="" data-target="#reservationdate" placeholder="Pincode"
+                            runat="server" TextMode="Number"></asp:TextBox>
+                        <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-map-pin"></span>
                         </div>
+                    </div>
                     </div>
 
                 </div>
@@ -115,6 +115,11 @@
             </div>
         </div>
         <!-- /.login-card-body -->
+    </div>
+    <div class="callout callout-info">
+        <h5><i class="fas fa-info"></i>Note:</h5>
+        This page has been enhanced for printing. Click the print button at the bottom of the invoice to test.
+           
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">

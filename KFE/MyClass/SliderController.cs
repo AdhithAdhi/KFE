@@ -29,6 +29,17 @@ namespace KFE.MyClass
             }
             return sliders;
         }
+        public string GetSlidersPathBy(int Id)
+        {
+            string sliderpath ="";
+            using (Kfe_Fresh_DBEntities dc = new Kfe_Fresh_DBEntities())
+            {
+                var singleRec = dc.SliderImages.FirstOrDefault(x => x.Id == Id);// object your want to delete
+                sliderpath = singleRec.ImagePath;
+
+            }
+            return sliderpath;
+        }
         public string DeleteById(int id)
         {
             string path = "";

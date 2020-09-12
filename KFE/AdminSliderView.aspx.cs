@@ -13,23 +13,16 @@ namespace KFE
 {
     public partial class AdminSliderView : System.Web.UI.Page
     {
-        HfeClass hfe = new HfeClass();
+        MyClass.SliderController sliderController = new MyClass.SliderController();
+        MyClass.FtpFileUpload uploader = new MyClass.FtpFileUpload();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
-                refreshdata();
+
             }
         }
 
-        public void refreshdata()
-        {
-            hfe.cmd = new SqlCommand("select * from SliderImages");
-            GridView1.DataSource = hfe.dt;
-            GridView1.DataBind();
-
-
-        }
         protected void sub_Button1_Click(object sender, EventArgs e)
         {
 
@@ -39,25 +32,26 @@ namespace KFE
                 Reload();
             }
             string fileName = name + "_" + Guid.NewGuid().ToString() + "_" + customFile.FileName;
-            var directory = Server.MapPath("~/Images/Sliders/");
-            if (!Directory.Exists(directory))
-            {
-                Directory.CreateDirectory(directory);
-            }
-            //Response.Redirect("/test");
+            //var directory = Server.MapPath("~/Images/Sliders/");
+            //if (!Directory.Exists(directory))
+            //{
+            //    Directory.CreateDirectory(directory);
+            //}
+            ////Response.Redirect("/test");
             try
             {
-                customFile.PostedFile.SaveAs(Path.Combine(directory, fileName));
+                uploader.FTPUpload(customFile, "Sliders", fileName);
             }
             catch (Exception ex)
             {
                 Response.Write("* " + ex.Message);
                 return;
             }
-            hfe.cmd = new SqlCommand("insert into SliderImages(ImagePath)values(@pa)");
+            sliderController.AddSlider(new SliderImage()
+            {
+                ImagePath = fileName
 
-            hfe.cmd.Parameters.AddWithValue("@pa", fileName);
-            hfe.setData("Slider Images");
+            });
 
             Reload();
 
@@ -70,36 +64,26 @@ namespace KFE
         protected void SliderRowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             int id = Convert.ToInt16(GridView1.DataKeys[e.RowIndex].Values["Id"].ToString());
+            var path = sliderController.DeleteById(id);
 
-            hfe.cmd = new SqlCommand("select * from SliderImages where Id =@id");
-            hfe.cmd.Parameters.AddWithValue("id", id);
-            hfe.getdata();
-            if (hfe.dt.Rows.Count > 0)
+            if (path != "")
             {
-                hfe.cmd = new SqlCommand("delete from SliderImages where Id =@id");
-                hfe.cmd.Parameters.AddWithValue("id", id);
-                if (hfe.setData() > 0)
-                {
-                    string filepath = hfe.dt.Rows[0]["ImagePath"].ToString();
-                    File.Delete(Server.MapPath("Images") + "\\Sliders\\" + filepath);
-                }
+                HttpContext.Current.Response.Write("<script>alert('" + uploader.DeleteFile("Sliders", path) + "!');</script>");
             }
-           refreshdata();
         }
 
         protected void SliderRowViewing(object sender, GridViewSelectEventArgs e)
         {
-            int id = Convert.ToInt16(GridView1.DataKeys[e.NewSelectedIndex].Values["Id"].ToString()); 
-            hfe.cmd = new SqlCommand("select * from SliderImages where Id =@id");
-            hfe.cmd.Parameters.AddWithValue("id", id);
-            hfe.getdata();
-            if (hfe.dt.Rows.Count > 0)
+            int id = Convert.ToInt16(GridView1.DataKeys[e.NewSelectedIndex].Values["Id"].ToString());
+
+            var path = sliderController.GetSlidersPathBy(id);
+            if (path!="")
             {
-                string filepath = hfe.dt.Rows[0]["ImagePath"].ToString();
-                Response.Redirect("\\Images" + "\\Sliders\\" + filepath);
-                //Response.Write("<script>window.open ('\\Images\\Sliders\\" + filepath + "','_blank');</script>");
+                //Response.Redirect("https://static.kfefresh.com/Images" + "/Sliders/" + path);
+                //some code to insert records
+
             }
-            refreshdata();
+            Response.Write("<script>window.open ('https://static.kfefresh.com/Images/Sliders/" + path + "','_blank');</script>");
         }
 
 

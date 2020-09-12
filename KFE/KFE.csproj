@@ -229,6 +229,7 @@
     <Content Include="AdminLogin.aspx" />
     <Content Include="AdminLogout.aspx" />
     <Content Include="AdminOrders.aspx" />
+    <Content Include="Cart.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -248,6 +249,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Admin.Master" />
     <Content Include="Index.aspx" />
+    <Content Include="ItemView.aspx" />
     <Content Include="KfeModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>KfeModel.edmx</DependentUpon>
@@ -2210,10 +2212,24 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Cart.aspx.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cart.aspx.designer.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cart.cs">
+      <DependentUpon>KfeModel.tt</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Category.cs">
       <DependentUpon>KfeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Customer.cs">
+      <DependentUpon>KfeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DeliveryPincode.cs">
       <DependentUpon>KfeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Gallery.cs">
@@ -2232,6 +2248,13 @@
     </Compile>
     <Compile Include="Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ItemView.aspx.cs">
+      <DependentUpon>ItemView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ItemView.aspx.designer.cs">
+      <DependentUpon>ItemView.aspx</DependentUpon>
     </Compile>
     <Compile Include="KfeModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -2266,6 +2289,7 @@
     <Compile Include="Models\Products.cs" />
     <Compile Include="Models\Slider.cs" />
     <Compile Include="MyClass\Categories.cs" />
+    <Compile Include="MyClass\FtpFileUpload.cs" />
     <Compile Include="MyClass\GalleryController.cs" />
     <Compile Include="MyClass\HitCount.cs" />
     <Compile Include="AdminProductView.aspx.cs">

@@ -18,6 +18,7 @@ namespace KFE
         public Product()
         {
             this.Orders = new HashSet<Order>();
+            this.Carts = new HashSet<Cart>();
         }
     
         public int Id { get; set; }
@@ -31,5 +32,7 @@ namespace KFE
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cart> Carts { get; set; }
     }
 }

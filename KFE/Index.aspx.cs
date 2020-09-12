@@ -11,12 +11,12 @@ namespace KFE
 {
     public partial class Index : System.Web.UI.Page
     {
-        HfeClass hfe = new HfeClass();
         public List<Slider> Sliders = new List<Slider>();
         public List<KFE.Models.Products> Products = new List<KFE.Models.Products>();
         public List<GalleryWithTag> galleryWithTags = new List<GalleryWithTag>();
         MyClass.GalleryController galleryController = new MyClass.GalleryController();
         MyClass.ProductsController productsController = new MyClass.ProductsController();
+        MyClass.SliderController sliderController = new MyClass.SliderController();
         public MyClass.Categories categories = new MyClass.Categories();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -29,14 +29,19 @@ namespace KFE
         }
         public void LoadSliderImages()
         {
-            hfe.cmd = new SqlCommand("select * from SliderImages");
-            hfe.getdata();
-            if (hfe.dt.Rows.Count > 0)
-            {
-                Sliders.Clear();
-                for (int i = 0; i < hfe.dt.Rows.Count; i++)
-                    Sliders.Add(new Slider((int)hfe.dt.Rows[i]["Id"], hfe.dt.Rows[i]["ImagePath"].ToString()));
-            }
+            var sliders = sliderController.GetAllSliders();
+            sliders.Clear();
+            for (int i = 0; i < sliders.Count; i++)
+                Sliders.Add(new Slider(sliders[i].Id, sliders[i].ImagePath));
+
+            //hfe.cmd = new SqlCommand("select * from SliderImages");
+            //hfe.getdata();
+            //if (hfe.dt.Rows.Count > 0)
+            //{
+            //    Sliders.Clear();
+            //    for (int i = 0; i < hfe.dt.Rows.Count; i++)
+            //        Sliders.Add(new Slider((int)hfe.dt.Rows[i]["Id"], hfe.dt.Rows[i]["ImagePath"].ToString()));
+            //}
         }
         public void LoadProducts()
         {

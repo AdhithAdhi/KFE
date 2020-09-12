@@ -23,7 +23,7 @@ namespace KFE
             var phone = PhoneText.Text;
             var adr = adr_Textarea.Text;
             var pass = Crypto.Hash(UserPassword.Text);
-            var dob =Convert.ToDateTime(DoBTextBox.Text).Date;
+            var dob = DateTime.ParseExact(DoBTextBox.Text, "dd/MM/yyyy", null); ;
             bool result = userController.AddCustomer(new Customer()
             {
                 Name = name,
@@ -42,7 +42,7 @@ namespace KFE
             {
                 HttpContext.Current.Response.Write("<script>alert('Registration Failed...!');</script>");
             }
-            Response.Redirect("/Login");
+            //Response.Redirect("/Login");
         }
     }
 }
