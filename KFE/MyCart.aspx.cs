@@ -50,6 +50,10 @@ namespace KFE
 
         protected void BuyBtn_Click(object sender, EventArgs e)
         {
+            if (Convert.ToInt32(Session["customerId"].ToString())==0)
+            {
+                Response.Redirect("/Login");
+            }
             int orderId=orderController.AddToOrders(new Order()
             {
                 Date = DateTime.Now,
@@ -70,6 +74,12 @@ namespace KFE
                 }) ;
 
             }
+            foreach (Cart cart in carts)
+            {
+                cartController.DeleteById(cart.CartId);
+
+            }
+            Response.Redirect("/MyOrders");
         }
     }
 }

@@ -24,7 +24,7 @@
                         <%foreach (KFE.Cart cart in carts)
                             {
                                 var CartId = cart.CartId;
-                                %>
+                        %>
                         <div class="align-items-stretch">
                             <div class="card bg-light">
                                 <div class="card-body pt-0">
@@ -35,11 +35,11 @@
                                         <div class="col-7 mt-3">
                                             <h2 class="lead text-bold"><b><%:GetProdyctById(cart.ProductId).Title%></b></h2>
                                             <p class="text-muted text-sm"><b>Price : </b>₹<%:GetProdyctById(cart.ProductId).Price%></p>
-                                            
+
                                             <div class="text-left">
-                                                        <span class="text-warning">Qty (Kg)</span>
-                                                <div class="input-group"> 
-                                                     <input disabled="disabled" class="form-control align-content-center" value="<%:cart.Count %>" />
+                                                <span class="text-warning">Qty (Kg)</span>
+                                                <div class="input-group">
+                                                    <input disabled="disabled" class="form-control align-content-center" value="<%:cart.Count %>" />
                                                 </div>
                                             </div>
                                             <div class="mt-3">
@@ -47,47 +47,48 @@
                                                     { %>
                                                 <asp:CheckBox ID="CheckBox1" runat="server" Enabled="false" Checked="true" />
                                                 <%}
-                                                else
-                                                { %>
+                                                    else
+                                                    { %>
                                                 <asp:CheckBox ID="CheckBox2" runat="server" Enabled="false" Checked="false" />
 
                                                 <%} %>
 
                                                 <label class="text-primary">Need Cutting & Cleaning</label><br />
-                                                
+
                                                 <p class="text-muted text-sm">*After Cleaning 250 grams of 1 Kg will lose.</p>
-                                                
+
                                                 <h2 class="lead text-bold"><b>Total :₹<%:GetProdyctById(cart.ProductId).Price*cart.Count%></b></h2>
                                             </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="row d-flex">
-                                        <div class="text-right">
-                                            <div class="btn-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text"><i class="fas fa-tag"></i></span>
+                                    <div class="card-footer">
+                                        <div class="row d-flex">
+                                            <div class="text-right">
+                                                <div class="btn-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fas fa-tag"></i></span>
+                                                    </div>
+                                                    <a class="btn btn-sm btn-success" href="ProductView.aspx?Product=<%:KFE.MyClass.EncryptDecrypt.Encrypt(HttpUtility.UrlEncode(cart.ProductId.ToString())) %>">View Product</a>
+
                                                 </div>
-                                                <a class="btn btn-sm btn-success" href="ProductView.aspx?Product=<%:KFE.MyClass.EncryptDecrypt.Encrypt(HttpUtility.UrlEncode(cart.ProductId.ToString())) %>">View Product</a>
+                                                <div class="btn-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fas fa-trash"></i></span>
+                                                    </div>
+                                                    <a class="btn btn-sm btn-danger" href="RemoveFromCart.aspx?cId=<%:KFE.MyClass.EncryptDecrypt.Encrypt(HttpUtility.UrlEncode(cart.CartId.ToString())) %>">Remove</a>
+                                                </div>
 
                                             </div>
-                                            <div class="btn-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text"><i class="fas fa-trash"></i></span>
-                                                </div>
-                                                <a class="btn btn-sm btn-danger" href="RemoveFromCart.aspx?cId=<%:KFE.MyClass.EncryptDecrypt.Encrypt(HttpUtility.UrlEncode(cart.CartId.ToString())) %>">Remove</a>
-                                            </div>
-
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <%} %>
                         </div>
-                        <%} %>
-                    </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer clearfix">
-                        <asp:Button ID="BuyBtn" runat="server" Text="Buy Items" class="btn btn-info float-right" OnClick="BuyBtn_Click" />
+                        <!-- /.card-body -->
+                        <div class="card-footer clearfix">
+                            <asp:Button ID="BuyBtn" runat="server" Text="Buy Items" class="btn btn-info float-right" OnClick="BuyBtn_Click" />
+                        </div>
                     </div>
                 </div>
             </section>
