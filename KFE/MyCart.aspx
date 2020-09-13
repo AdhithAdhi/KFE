@@ -39,19 +39,25 @@
                                             <div class="text-left">
                                                         <span class="text-warning">Qty (Kg)</span>
                                                 <div class="input-group"> 
-                                                    <asp:TextBox ID="QuantityText" CssClass="form-control align-content-center" Enabled="false" runat="server" >1</asp:TextBox>
-                                                     
+                                                     <input disabled="disabled" class="form-control align-content-center" value="<%:cart.Count %>" />
                                                 </div>
                                             </div>
                                             <div class="mt-3">
-                                                
-                                                <asp:CheckBox ID="CheckBox1" runat="server" />
+                                                <%if (cart.Extras != "")
+                                                    { %>
+                                                <asp:CheckBox ID="CheckBox1" runat="server" Enabled="false" Checked="true" />
+                                                <%}
+                                                else
+                                                { %>
+                                                <asp:CheckBox ID="CheckBox2" runat="server" Enabled="false" Checked="false" />
+
+                                                <%} %>
 
                                                 <label class="text-primary">Need Cutting & Cleaning</label><br />
                                                 
                                                 <p class="text-muted text-sm">*After Cleaning 250 grams of 1 Kg will lose.</p>
                                                 
-                                                <h2 class="lead text-bold"><b>Total :₹<%:GetProdyctById(cart.ProductId).Price*Convert.ToDecimal(QuantityText.Text)%></b></h2>
+                                                <h2 class="lead text-bold"><b>Total :₹<%:GetProdyctById(cart.ProductId).Price*cart.Count%></b></h2>
                                             </div>
                                     </div>
                                 </div>

@@ -210,14 +210,14 @@
                         {
 
                         %> <div class="item author-item">
-                            <div class="member-thumb">
-                                <img src="https://static.kfefresh.com/Images/Products/<%:Products[i].ImagePath %>" alt="" width="360" height="300" />
-                                <div class="hover-effect">
+                            <div class="card-header">
+                                <img src="https://static.kfefresh.com/Images/Products/<%:Products[i].ImagePath %>" alt="" style="width:100%" />
+                                <%--<div class="hover-effect">
                                     <div class="hover-content">
 
                                         <span><%:Products[i].Description %></span>
                                     </div>
-                                </div>
+                                </div>--%>
                             </div>
                             <h4><%:Products[i].Title %></h4>
                             <button class="main-button-icon">

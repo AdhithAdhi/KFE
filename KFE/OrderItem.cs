@@ -19,6 +19,7 @@ namespace KFE
         public decimal Quantity { get; set; }
         public decimal Amount { get; set; }
         public int OrderId { get; set; }
+        public string Extras { get; set; }
     
         public virtual Product Product { get; set; }
         public virtual Order Order { get; set; }

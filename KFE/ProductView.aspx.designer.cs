@@ -78,6 +78,33 @@ namespace KFE
         protected global::System.Web.UI.WebControls.Label FinalPriceText;
 
         /// <summary>
+        /// QantityText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox QantityText;
+
+        /// <summary>
+        /// txtPremium_Integer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator txtPremium_Integer;
+
+        /// <summary>
+        /// NeedCheckBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox NeedCheckBox;
+
+        /// <summary>
         /// BtnAddToCart control.
         /// </summary>
         /// <remarks>
@@ -85,5 +112,32 @@ namespace KFE
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BtnAddToCart;
+
+        /// <summary>
+        /// DeliveryPin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox DeliveryPin;
+
+        /// <summary>
+        /// CheckDeliveryBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button CheckDeliveryBtn;
+
+        /// <summary>
+        /// ResultText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ResultText;
     }
 }

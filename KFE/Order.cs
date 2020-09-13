@@ -26,6 +26,7 @@ namespace KFE
         public decimal Price { get; set; }
         public string Status { get; set; }
         public string Extras { get; set; }
+        public string Address { get; set; }
     
         public virtual Customer Customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

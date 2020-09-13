@@ -19,12 +19,12 @@
         <EntityTypeShape EntityType="Kfe_Fresh_DBModel.Customer" Width="1.5" PointX="6.625" PointY="7.5" />
         <AssociationConnector Association="Kfe_Fresh_DBModel.FK_Cart_ToCustomer" />
         <EntityTypeShape EntityType="Kfe_Fresh_DBModel.OrderdItem" Width="1.5" PointX="7" PointY="3.125" />
-        <EntityTypeShape EntityType="Kfe_Fresh_DBModel.OrderItem" Width="1.5" PointX="7.5" PointY="4.125" />
+        <EntityTypeShape EntityType="Kfe_Fresh_DBModel.OrderItem" Width="1.5" PointX="10.125" PointY="4" />
         <AssociationConnector Association="Kfe_Fresh_DBModel.FK_OrderItem_ToProducts" />
-        <EntityTypeShape EntityType="Kfe_Fresh_DBModel.Order" Width="1.5" PointX="10.125" PointY="7.375" />
+        <EntityTypeShape EntityType="Kfe_Fresh_DBModel.Order" Width="1.5" PointX="10" PointY="7.5" />
         <AssociationConnector Association="Kfe_Fresh_DBModel.FK_Orders_ToCustomers" />
         <AssociationConnector Association="Kfe_Fresh_DBModel.FK_OrderItem_ToOrders" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

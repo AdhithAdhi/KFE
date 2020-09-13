@@ -42,7 +42,29 @@
                             </small>
                         </h4>
                     </div>
+                    <div class="mt-4">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Qty (Kg)</span>
+                            </div>
+                            <asp:TextBox ID="QantityText" runat="server" CssClass="form-control" requird="" Text="1"></asp:TextBox>
+                            <asp:RegularExpressionValidator ID="txtPremium_Integer"
+                                ControlToValidate="QantityText" ValidationGroup="Insert" ForeColor="Red"
+                                runat="server" Display="Dynamic"
+                                ErrorMessage="'Quantity' must be decimal like '5.24'"
+                                ValidationExpression="^\d+([,\.]\d{1,2})?$">
+                            </asp:RegularExpressionValidator>
+                        </div>
+                    </div>
+                    <div class="mt-4">
 
+                        <asp:CheckBox ID="NeedCheckBox" runat="server" />
+
+                        <label class="text-primary">Need Cutting & Cleaning</label><br />
+
+                        <p class="text-muted text-sm">*After Cleaning 250 grams of 1 Kg will lose.</p>
+
+                    </div>
                     <div class="mt-4">
                         <div class="input-group">
                             <div class="input-group-prepend">
@@ -52,7 +74,18 @@
 
                         </div>
                     </div>
+                    <div class="mt-4">
+                        <label class="text-bold">Check Delivery</label>
+                        <div class="input-group input-group">
+                        <asp:TextBox ID="DeliveryPin" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                        
+                            <span class="input-group-append">
+                                <asp:Button class="btn btn-success btn-sm" ID="CheckDeliveryBtn" runat="server" Text="Check"/>
+                            </span>
+                        </div>
+                        <asp:Label CssClass="text-danger" ID="ResultText" runat="server"></asp:Label>
 
+                    </div>
                     <div class="mt-4 product-share">
                         <a href="#" class="text-dark">
                             <i class="fab fa-facebook-square fa-2x"></i>

@@ -51,5 +51,20 @@ namespace KFE.MyClass
             }
             return result;
         }
+        public Customer GetCustomerBy(int customerId)
+        {
+            Customer result = new Customer();
+            using (Kfe_Fresh_DBEntities dc = new Kfe_Fresh_DBEntities())
+            {
+                foreach (Customer cus in dc.Customers)
+                {
+                    if (cus.CustomerId == customerId)
+                    {
+                        result = cus;
+                    }
+                }
+            }
+            return result;
+        }
     }
 }

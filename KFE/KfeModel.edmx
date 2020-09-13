@@ -75,6 +75,7 @@
           <Property Name="Quantity" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="Extras" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
@@ -86,6 +87,7 @@
           <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Status" Type="varchar(max)" Nullable="false" />
           <Property Name="Extras" Type="varchar(max)" />
+          <Property Name="Address" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Products">
           <Key>
@@ -423,6 +425,7 @@
           <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="Amount" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="Extras" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Product" Relationship="Kfe_Fresh_DBModel.FK_OrderItem_ToProducts" FromRole="OrderItem" ToRole="Product" />
           <NavigationProperty Name="Order" Relationship="Kfe_Fresh_DBModel.FK_OrderItem_ToOrders" FromRole="OrderItem" ToRole="Order" />
         </EntityType>
@@ -448,6 +451,7 @@
           <Property Name="Price" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="Status" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Extras" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Customer" Relationship="Kfe_Fresh_DBModel.FK_Orders_ToCustomers" FromRole="Order" ToRole="Customer" />
           <NavigationProperty Name="OrderItems" Relationship="Kfe_Fresh_DBModel.FK_OrderItem_ToOrders" FromRole="Order" ToRole="OrderItem" />
         </EntityType>
@@ -573,6 +577,7 @@
           <EntitySetMapping Name="OrderItems">
             <EntityTypeMapping TypeName="Kfe_Fresh_DBModel.OrderItem">
               <MappingFragment StoreEntitySet="OrderItem">
+                <ScalarProperty Name="Extras" ColumnName="Extras" />
                 <ScalarProperty Name="OrderId" ColumnName="OrderId" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
@@ -584,6 +589,7 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="Kfe_Fresh_DBModel.Order">
               <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Extras" ColumnName="Extras" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Price" ColumnName="Price" />

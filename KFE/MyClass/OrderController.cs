@@ -35,5 +35,16 @@ namespace KFE.MyClass
             }
             return orders;
         }
+        public Order GetOrdersByOrder(int orderId)
+        {
+            Order order = new Order();
+
+            using (Kfe_Fresh_DBEntities dc = new Kfe_Fresh_DBEntities())
+            {
+                order = dc.Orders.FirstOrDefault((x) => x.OrderId.Equals(orderId));
+                
+            }
+            return order;
+        }
     }
 }

@@ -78,12 +78,17 @@ namespace KFE
                 }
                 else
                 {
+                    var value = "";
+                    if (NeedCheckBox.Checked)
+                    {
+                        value = "Need Cleaning";
+                    }
                     cartController.AddToCart(new Cart()
                     {
                         CustomerId = Convert.ToInt32(Session["customerId"].ToString()),
                         ProductId = ProductId,
-                        Count = 1,
-                        Extras = "",
+                        Count = Convert.ToDecimal(QantityText.Text),
+                        Extras = value,
                     });
                     Response.Redirect(Request.RawUrl);
                 }
