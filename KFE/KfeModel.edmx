@@ -66,17 +66,25 @@
           <Property Name="IPAddress" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="OrderItem">
+          <Key>
+            <PropertyRef Name="OrdItemId" />
+          </Key>
+          <Property Name="OrdItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Orders">
           <Key>
             <PropertyRef Name="OrderId" />
           </Key>
           <Property Name="OrderId" Type="int" Nullable="false" />
           <Property Name="CustomerId" Type="int" Nullable="false" />
-          <Property Name="ProductId" Type="int" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Status" Type="varchar(max)" Nullable="false" />
-          <Property Name="Quantity" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Extras" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Products">
@@ -134,6 +142,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_OrderItem_ToOrders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="OrderItem" Type="Self.OrderItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="OrderItem">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderItem_ToProducts">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="OrderItem" Type="Self.OrderItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderItem">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Orders_ToCustomers">
           <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
@@ -143,18 +175,6 @@
             </Principal>
             <Dependent Role="Orders">
               <PropertyRef Name="CustomerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Orders_ToProducts">
-          <End Role="Products" Type="Self.Products" Multiplicity="1" />
-          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Products">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Orders">
-              <PropertyRef Name="ProductId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -178,6 +198,7 @@
           <EntitySet Name="DeliveryPincodes" EntityType="Self.DeliveryPincodes" Schema="kfefresh" store:Type="Tables" />
           <EntitySet Name="Gallery" EntityType="Self.Gallery" Schema="kfefresh" store:Type="Tables" />
           <EntitySet Name="HitCounter" EntityType="Self.HitCounter" Schema="kfefresh" store:Type="Tables" />
+          <EntitySet Name="OrderItem" EntityType="Self.OrderItem" Schema="kfefresh" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="kfefresh" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="kfefresh" store:Type="Tables" />
           <EntitySet Name="SliderImages" EntityType="Self.SliderImages" Schema="kfefresh" store:Type="Tables" />
@@ -193,12 +214,16 @@
             <End Role="Category" EntitySet="Category" />
             <End Role="Gallery" EntitySet="Gallery" />
           </AssociationSet>
+          <AssociationSet Name="FK_OrderItem_ToOrders" Association="Self.FK_OrderItem_ToOrders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderItem" EntitySet="OrderItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItem_ToProducts" Association="Self.FK_OrderItem_ToProducts">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="OrderItem" EntitySet="OrderItem" />
+          </AssociationSet>
           <AssociationSet Name="FK_Orders_ToCustomers" Association="Self.FK_Orders_ToCustomers">
             <End Role="Customers" EntitySet="Customers" />
-            <End Role="Orders" EntitySet="Orders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Orders_ToProducts" Association="Self.FK_Orders_ToProducts">
-            <End Role="Products" EntitySet="Products" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="FK_Products_ToCategory" Association="Self.FK_Products_ToCategory">
@@ -245,21 +270,6 @@
           <Property Name="IPAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
-        <EntityType Name="Order">
-          <Key>
-            <PropertyRef Name="OrderId" />
-          </Key>
-          <Property Name="OrderId" Type="Int32" Nullable="false" />
-          <Property Name="CustomerId" Type="Int32" Nullable="false" />
-          <Property Name="ProductId" Type="Int32" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_Orders_ToProducts" FromRole="Orders" ToRole="Products" />
-          <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="Extras" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Customer" Relationship="Kfe_Fresh_DBModel.FK_Orders_ToCustomers" FromRole="Order" ToRole="Customer" />
-        </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="Id" />
@@ -271,9 +281,9 @@
           <Property Name="Price" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="CategoryId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Products_ToCategory" FromRole="Products" ToRole="Category" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_ToProducts" FromRole="Products" ToRole="Orders" />
           <Property Name="StockCount" Type="Decimal" Nullable="false" Precision="10" Scale="3" />
           <NavigationProperty Name="Carts" Relationship="Kfe_Fresh_DBModel.FK_Cart_ToProducts" FromRole="Product" ToRole="Cart" />
+          <NavigationProperty Name="OrderItems" Relationship="Kfe_Fresh_DBModel.FK_OrderItem_ToProducts" FromRole="Product" ToRole="OrderItem" />
         </EntityType>
         <EntityType Name="SliderImage">
           <Key>
@@ -306,24 +316,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Orders_ToProducts">
-          <End Role="Products" Type="Self.Product" Multiplicity="1" />
-          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Products">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Orders">
-              <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="Kfe_Fresh_DBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AdminLogins" EntityType="Self.AdminLogin" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Galleries" EntityType="Self.Gallery" />
           <EntitySet Name="HitCounters" EntityType="Self.HitCounter" />
-          <EntitySet Name="Orders" EntityType="Self.Order" />
           <EntitySet Name="Products" EntityType="Self.Product" />
           <EntitySet Name="SliderImages" EntityType="Self.SliderImage" />
           <AssociationSet Name="FK_Gallery_ToCategory" Association="Self.FK_Gallery_ToCategory">
@@ -333,10 +330,6 @@
           <AssociationSet Name="FK_Products_ToCategory" Association="Self.FK_Products_ToCategory">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Products" EntitySet="Products" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Orders_ToProducts" Association="Self.FK_Orders_ToProducts">
-            <End Role="Products" EntitySet="Products" />
-            <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
           <EntitySet Name="Carts" EntityType="Kfe_Fresh_DBModel.Cart" />
           <EntitySet Name="DeliveryPincodes" EntityType="Kfe_Fresh_DBModel.DeliveryPincode" />
@@ -349,9 +342,19 @@
             <End Role="Customer" EntitySet="Customers" />
             <End Role="Cart" EntitySet="Carts" />
           </AssociationSet>
+          <EntitySet Name="OrderItems" EntityType="Kfe_Fresh_DBModel.OrderItem" />
+          <AssociationSet Name="FK_OrderItem_ToProducts" Association="Kfe_Fresh_DBModel.FK_OrderItem_ToProducts">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="OrderItem" EntitySet="OrderItems" />
+          </AssociationSet>
+          <EntitySet Name="Orders" EntityType="Kfe_Fresh_DBModel.Order" />
           <AssociationSet Name="FK_Orders_ToCustomers" Association="Kfe_Fresh_DBModel.FK_Orders_ToCustomers">
             <End Role="Customer" EntitySet="Customers" />
             <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItem_ToOrders" Association="Kfe_Fresh_DBModel.FK_OrderItem_ToOrders">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderItem" EntitySet="OrderItems" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Cart">
@@ -411,6 +414,43 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="OrderItem">
+          <Key>
+            <PropertyRef Name="OrdItemId" />
+          </Key>
+          <Property Name="OrdItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Kfe_Fresh_DBModel.FK_OrderItem_ToProducts" FromRole="OrderItem" ToRole="Product" />
+          <NavigationProperty Name="Order" Relationship="Kfe_Fresh_DBModel.FK_OrderItem_ToOrders" FromRole="OrderItem" ToRole="Order" />
+        </EntityType>
+        <Association Name="FK_OrderItem_ToProducts">
+          <End Type="Kfe_Fresh_DBModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="Kfe_Fresh_DBModel.OrderItem" Role="OrderItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderItem">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Extras" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Customer" Relationship="Kfe_Fresh_DBModel.FK_Orders_ToCustomers" FromRole="Order" ToRole="Customer" />
+          <NavigationProperty Name="OrderItems" Relationship="Kfe_Fresh_DBModel.FK_OrderItem_ToOrders" FromRole="Order" ToRole="OrderItem" />
+        </EntityType>
         <Association Name="FK_Orders_ToCustomers">
           <End Type="Kfe_Fresh_DBModel.Customer" Role="Customer" Multiplicity="1" />
           <End Type="Kfe_Fresh_DBModel.Order" Role="Order" Multiplicity="*" />
@@ -420,6 +460,18 @@
             </Principal>
             <Dependent Role="Order">
               <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderItem_ToOrders">
+          <End Type="Kfe_Fresh_DBModel.Order" Role="Order" Multiplicity="1" />
+          <End Type="Kfe_Fresh_DBModel.OrderItem" Role="OrderItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="OrderItem">
+              <PropertyRef Name="OrderId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -462,20 +514,6 @@
                 <ScalarProperty Name="SlID" ColumnName="SlID" />
                 <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="Kfe_Fresh_DBModel.Order">
-              <MappingFragment StoreEntitySet="Orders">
-                <ScalarProperty Name="Extras" ColumnName="Extras" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -529,6 +567,29 @@
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderItems">
+            <EntityTypeMapping TypeName="Kfe_Fresh_DBModel.OrderItem">
+              <MappingFragment StoreEntitySet="OrderItem">
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="OrdItemId" ColumnName="OrdItemId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="Kfe_Fresh_DBModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="Extras" ColumnName="Extras" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

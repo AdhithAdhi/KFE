@@ -12,7 +12,7 @@ namespace KFE
         public List<Cart> carts = new List<Cart>();
         MyClass.CartController cartController = new MyClass.CartController();
         MyClass.ProductsController productsController = new MyClass.ProductsController();
-        MyClass.ord
+        MyClass.OrderController orderController = new MyClass.OrderController();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -40,7 +40,7 @@ namespace KFE
 
         protected void BuyBtn_Click(object sender, EventArgs e)
         {
-
+            orderController.AddToOrders(new )
         }
     }
 }

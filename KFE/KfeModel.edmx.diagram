@@ -4,24 +4,26 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d5e3254cff344ab986add7c8270fa1b3" Name="Diagram1">
+      <Diagram DiagramId="d5e3254cff344ab986add7c8270fa1b3" Name="Diagram1" ZoomLevel="74">
         <EntityTypeShape EntityType="Kfe_Fresh_DBModel.AdminLogin" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Kfe_Fresh_DBModel.Category" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Kfe_Fresh_DBModel.Gallery" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Kfe_Fresh_DBModel.HitCounter" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Kfe_Fresh_DBModel.Order" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Kfe_Fresh_DBModel.Product" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Kfe_Fresh_DBModel.SliderImage" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Kfe_Fresh_DBModel.SliderImage" Width="1.5" PointX="8.125" PointY="2.5" IsExpanded="true" />
         <AssociationConnector Association="Kfe_Fresh_DBModel.FK_Gallery_ToCategory" ManuallyRouted="false" />
         <AssociationConnector Association="Kfe_Fresh_DBModel.FK_Products_ToCategory" ManuallyRouted="false" />
-        <AssociationConnector Association="Kfe_Fresh_DBModel.FK_Orders_ToProducts" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="Kfe_Fresh_DBModel.Cart" Width="1.5" PointX="2.375" PointY="7.75" />
-        <EntityTypeShape EntityType="Kfe_Fresh_DBModel.DeliveryPincode" Width="1.5" PointX="7.375" PointY="6.75" />
+        <EntityTypeShape EntityType="Kfe_Fresh_DBModel.Cart" Width="1.5" PointX="3.5" PointY="7.75" />
+        <EntityTypeShape EntityType="Kfe_Fresh_DBModel.DeliveryPincode" Width="1.5" PointX="5.625" PointY="2.625" />
         <AssociationConnector Association="Kfe_Fresh_DBModel.FK_Cart_ToProducts" />
-        <EntityTypeShape EntityType="Kfe_Fresh_DBModel.Customer" Width="1.5" PointX="5.25" PointY="7.5" />
+        <EntityTypeShape EntityType="Kfe_Fresh_DBModel.Customer" Width="1.5" PointX="6.625" PointY="7.5" />
         <AssociationConnector Association="Kfe_Fresh_DBModel.FK_Cart_ToCustomer" />
-        <AssociationConnector Association="Kfe_Fresh_DBModel.FK_Orders_ToCustomers" />
         <EntityTypeShape EntityType="Kfe_Fresh_DBModel.OrderdItem" Width="1.5" PointX="7" PointY="3.125" />
+        <EntityTypeShape EntityType="Kfe_Fresh_DBModel.OrderItem" Width="1.5" PointX="7.5" PointY="4.125" />
+        <AssociationConnector Association="Kfe_Fresh_DBModel.FK_OrderItem_ToProducts" />
+        <EntityTypeShape EntityType="Kfe_Fresh_DBModel.Order" Width="1.5" PointX="10.125" PointY="7.375" />
+        <AssociationConnector Association="Kfe_Fresh_DBModel.FK_Orders_ToCustomers" />
+        <AssociationConnector Association="Kfe_Fresh_DBModel.FK_OrderItem_ToOrders" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

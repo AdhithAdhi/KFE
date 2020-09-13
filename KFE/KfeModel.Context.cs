@@ -29,11 +29,12 @@ namespace KFE
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Gallery> Galleries { get; set; }
         public virtual DbSet<HitCounter> HitCounters { get; set; }
-        public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<SliderImage> SliderImages { get; set; }
         public virtual DbSet<Cart> Carts { get; set; }
         public virtual DbSet<DeliveryPincode> DeliveryPincodes { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<OrderItem> OrderItems { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
     }
 }

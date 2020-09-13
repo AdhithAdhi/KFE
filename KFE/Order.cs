@@ -14,16 +14,21 @@ namespace KFE
     
     public partial class Order
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Order()
+        {
+            this.OrderItems = new HashSet<OrderItem>();
+        }
+    
         public int OrderId { get; set; }
         public int CustomerId { get; set; }
-        public int ProductId { get; set; }
         public System.DateTime Date { get; set; }
         public decimal Price { get; set; }
         public string Status { get; set; }
-        public decimal Quantity { get; set; }
         public string Extras { get; set; }
     
-        public virtual Product Product { get; set; }
         public virtual Customer Customer { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderItem> OrderItems { get; set; }
     }
 }

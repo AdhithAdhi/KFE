@@ -7,14 +7,19 @@ namespace KFE.MyClass
 {
     public class OrderController
     {
-        public void AddToOrders(Order order)
+        public int AddToOrders(Order order)
         {
-
             using (Kfe_Fresh_DBEntities dc = new Kfe_Fresh_DBEntities())
             {
                 dc.Orders.Add(order);
                 dc.SaveChanges();
             }
+            var id = 0;
+            using (Kfe_Fresh_DBEntities dc = new Kfe_Fresh_DBEntities())
+            {
+                id = dc.Orders.Last().OrderId;
+            }
+            return id;
         }
         public List<Order> GetOrdersByCustomer(int CustomerId)
         {

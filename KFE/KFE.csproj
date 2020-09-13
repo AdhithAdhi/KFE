@@ -2263,6 +2263,9 @@
     <Compile Include="Oops.aspx.designer.cs">
       <DependentUpon>Oops.aspx</DependentUpon>
     </Compile>
+    <Compile Include="OrderItem.cs">
+      <DependentUpon>KfeModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ProductView.aspx.cs">
       <DependentUpon>ProductView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
