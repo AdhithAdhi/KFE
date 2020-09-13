@@ -46,7 +46,7 @@
                         runat="server" TextMode="Number"></asp:TextBox>
                     <div class="input-group-append">
                         <div class="input-group-text">
-                            <span class="fas fa-map-pin"></span>
+                            <span class="fas fa-map-marker-alt mr-1"></span>
                         </div>
                     </div>
 

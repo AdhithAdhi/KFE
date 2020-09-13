@@ -4,6 +4,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
+        <form id="cart" runat="server">
+            
         <div class="row">
 
             <section class="col-lg-7 connectedSortable">
@@ -18,39 +20,68 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <div class="col-12 d-flex align-items-stretch">
+                        <%="" %>
+                        <%foreach (KFE.Cart cart in carts)
+                            {
+                                var CartId = cart.CartId;
+                                %>
+                        <div class="align-items-stretch">
                             <div class="card bg-light">
                                 <div class="card-body pt-0">
                                     <div class="row">
-                                        <div class="col-5 text-center">
-                                            <img src="https://static.kfefresh.com/Images/Products/" alt="" class="img-circle img-fluid">
+                                        <div class="col-5 text-center mt-3">
+                                            <img src="https://static.kfefresh.com/Images/Products/<%:GetProdyctById(cart.ProductId).ImagePath%>" alt="" class="img-circle img-fluid">
                                         </div>
-                                        <div class="col-7">
-                                            <h2 class="lead"><b>Nicole Pearson</b></h2>
-                                            <p class="text-muted text-sm"><b>About: </b>Web Designer / UX / Graphic Artist / Coffee Lover </p>
-                                            <ul class="ml-4 mb-0 fa-ul text-muted">
-                                                <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span>Address: Demo Street 123, Demo City 04312, NJ</li>
-                                                <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span>Phone #: + 800 - 12 12 23 52</li>
-                                            </ul>
-                                        </div>
+                                        <div class="col-7 mt-3">
+                                            <h2 class="lead text-bold"><b><%:GetProdyctById(cart.ProductId).Title%></b></h2>
+                                            <p class="text-muted text-sm"><b>Price : </b>₹<%:GetProdyctById(cart.ProductId).Price%></p>
+                                            
+                                            <div class="text-left">
+                                                        <span class="text-warning">Qty (Kg)</span>
+                                                <div class="input-group"> 
+                                                    <asp:TextBox ID="QuantityText" CssClass="form-control align-content-center" Enabled="false" runat="server" >1</asp:TextBox>
+                                                     
+                                                </div>
+                                            </div>
+                                            <div class="mt-3">
+                                                
+                                                <asp:CheckBox ID="CheckBox1" runat="server" />
+
+                                                <label class="text-primary">Need Cutting & Cleaning</label><br />
+                                                
+                                                <p class="text-muted text-sm">*After Cleaning 250 grams of 1 Kg will lose.</p>
+                                                
+                                                <h2 class="lead text-bold"><b>Total :₹<%:GetProdyctById(cart.ProductId).Price*Convert.ToDecimal(QuantityText.Text)%></b></h2>
+                                            </div>
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <div class="text-right">
-                                        <a href="#" class="btn btn-sm bg-teal">
-                                            <i class="fas fa-comments"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-sm btn-primary">
-                                            <i class="fas fa-user"></i>View Profile
-                    </a>
+                                    <div class="row d-flex">
+                                        <div class="text-right">
+                                            <div class="btn-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fas fa-tag"></i></span>
+                                                </div>
+                                                <a class="btn btn-sm btn-success" href="ProductView.aspx?Product=<%:KFE.MyClass.EncryptDecrypt.Encrypt(HttpUtility.UrlEncode(cart.ProductId.ToString())) %>">View Product</a>
+
+                                            </div>
+                                            <div class="btn-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fas fa-trash"></i></span>
+                                                </div>
+                                                <a class="btn btn-sm btn-danger" href="RemoveFromCart.aspx?cId=<%:KFE.MyClass.EncryptDecrypt.Encrypt(HttpUtility.UrlEncode(cart.CartId.ToString())) %>">Remove</a>
+                                            </div>
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <%} %>
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer clearfix">
-                        <button type="button" class="btn btn-info float-right"><i class="fa fa-rupee"></i>Buy Items</button>
+                        <asp:Button ID="BuyBtn" runat="server" Text="Buy Items" class="btn btn-info float-right" OnClick="BuyBtn_Click" />
                     </div>
                 </div>
             </section>
@@ -61,17 +92,40 @@
                     <div class="card-header">
                         <h3 class="card-title">
                             <i class="ion ion-clipboard mr-1"></i>
-                            Total Amount
+                            Total
                 </h3>
 
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
+
+
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tr>
+                                    <th style="width: 50%">Subtotal:</th>
+                                    <td>₹<asp:Label ID="SubTotalText" runat="server"></asp:Label></td>
+                                </tr>
+                                <%--<tr>
+                                    <th>Tax (9.3%)</th>
+                                    <td>$10.34</td>
+                                </tr>--%>
+                                <tr>
+                                    <th>Shipping:</th>
+                                    <td>₹<asp:Label ID="ShippingText" runat="server"></asp:Label></td>
+                                </tr>
+                                <tr>
+                                    <th>Total:</th>
+                                    <td>₹<asp:Label ID="TotalText" runat="server"></asp:Label></td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                     <!-- /.card-body -->
                 </div>
             </section>
         </div>
+        </form>
     </div>
     <!-- /.card -->
 </asp:Content>

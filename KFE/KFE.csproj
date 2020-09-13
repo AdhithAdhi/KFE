@@ -283,6 +283,7 @@
     <Content Include="MyOrders.aspx" />
     <Content Include="MyPersonalInfo.aspx" />
     <Content Include="Register.aspx" />
+    <Content Include="RemoveFromCart.aspx" />
     <Content Include="Shop.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -2254,6 +2255,7 @@
     </Compile>
     <Compile Include="MyClass\CartController.cs" />
     <Compile Include="MyClass\EncryptDecrypt.cs" />
+    <Compile Include="MyClass\OrderController.cs" />
     <Compile Include="Oops.aspx.cs">
       <DependentUpon>Oops.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2340,6 +2342,13 @@
     </Compile>
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RemoveFromCart.aspx.cs">
+      <DependentUpon>RemoveFromCart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RemoveFromCart.aspx.designer.cs">
+      <DependentUpon>RemoveFromCart.aspx</DependentUpon>
     </Compile>
     <Compile Include="Shop.aspx.cs">
       <DependentUpon>Shop.aspx</DependentUpon>

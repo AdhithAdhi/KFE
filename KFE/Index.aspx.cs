@@ -29,8 +29,8 @@ namespace KFE
         }
         public void LoadSliderImages()
         {
+            Sliders.Clear();
             var sliders = sliderController.GetAllSliders();
-            sliders.Clear();
             for (int i = 0; i < sliders.Count; i++)
                 Sliders.Add(new Slider(sliders[i].Id, sliders[i].ImagePath));
 

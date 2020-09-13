@@ -55,6 +55,25 @@ namespace KFE.MyClass
             }
             return result;
         }
-
+        public Cart GetCartById(int cartId)
+        {
+            Cart cart = new Cart();
+            using (Kfe_Fresh_DBEntities dc = new Kfe_Fresh_DBEntities())
+            {
+                var singleRec = dc.Carts.FirstOrDefault(x => x.CartId == cartId);// object your want to delete
+                cart = singleRec;
+            }
+            return cart;
+        }
+        public void saveCart(Cart cart)
+        {
+            
+            using (Kfe_Fresh_DBEntities dc = new Kfe_Fresh_DBEntities())
+            {
+                var singleRec = dc.Carts.FirstOrDefault(x => x.CartId == cart.CartId);
+                singleRec = cart;
+                dc.SaveChanges();
+            }
+        }
     }
 }

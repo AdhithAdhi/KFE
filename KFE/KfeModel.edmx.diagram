@@ -21,6 +21,7 @@
         <EntityTypeShape EntityType="Kfe_Fresh_DBModel.Customer" Width="1.5" PointX="5.25" PointY="7.5" />
         <AssociationConnector Association="Kfe_Fresh_DBModel.FK_Cart_ToCustomer" />
         <AssociationConnector Association="Kfe_Fresh_DBModel.FK_Orders_ToCustomers" />
+        <EntityTypeShape EntityType="Kfe_Fresh_DBModel.OrderdItem" Width="1.5" PointX="7" PointY="3.125" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
