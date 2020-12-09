@@ -28,15 +28,12 @@ namespace KFE
                 Reload();
             }
             string fileName = name + "_" + Guid.NewGuid().ToString() + "_" + customFile.FileName;
-            var directory = Server.MapPath("~/Images/Gallery/");
-            if (!Directory.Exists(directory))
-            {
-                Directory.CreateDirectory(directory);
-            }
+            fileName = fileName.Replace('/', '_');
+            fileName = fileName.Replace('\\', '_');
             //Response.Redirect("/test");
             try
             {
-                uploader.FTPUpload(customFile, "Products", fileName);
+                uploader.FTPUpload(customFile, "Gallery", fileName);
             }
             catch (Exception ex)
             {
@@ -49,11 +46,6 @@ namespace KFE
                 Tag = selectedTag,
             }); 
 
-            //hfe.cmd = new SqlCommand("insert into Gallery(ImagePath,Tag)values(@pa,@ta)");
-
-            //hfe.cmd.Parameters.AddWithValue("@pa", fileName);
-            //hfe.cmd.Parameters.AddWithValue("@ta", selectedTag);
-            //hfe.setData("Gallery");
 
             Reload();
         }

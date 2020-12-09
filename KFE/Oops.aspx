@@ -3,21 +3,23 @@
     <title>Ooops....</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="error-page">
-        <h2 class="headline text-warning">Oops</h2>
+  <section class="content">
+      <div class="error-page">
+        <h2 class="headline text-warning p-1"> Oops </h2>
 
         <div class="error-content">
-            <h3><i class="fas fa-exclamation-triangle text-warning"></i>Oops! Page not found.</h3>
+          <h3><i class="fas fa-exclamation-triangle text-warning"></i> Oops! Page not found.</h3>
 
-            <p>
+          <p>
                 We could not find the page you were looking for.
                 Meanwhile, you may <a href="/Shop">return to Shop</a>.
-            </p>
-
+          </p>
 
         </div>
         <!-- /.error-content -->
-    </div>
+      </div>
+      <!-- /.error-page -->
+    </section>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Scripts" runat="server">
 </asp:Content>

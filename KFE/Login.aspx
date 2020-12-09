@@ -8,11 +8,16 @@
     </div>
     <!-- /.login-logo -->
     <div class="card">
+        
         <div class="card-body login-card-body">
+                <div class="form-group" runat="server" id="ErrorField" visible="false">
+                    <span class="attachment-block accent-blue">
+                        <label class="text-bold text-danger">Username or Password isn't correct</label>
+                    </span>
+                </div>
             <p class="login-box-msg">Login to shop</p>
 
             <form id="account" method="post" runat="server">
-                <div class="text-danger"></div>
                 <div class="form-group input-group mb-3">
                     <asp:TextBox ID="Username" class="form-control" required="" placeholder="Email Or Phone"
                         runat="server" TextMode="Email"></asp:TextBox>
@@ -47,7 +52,7 @@
             </form>
             <div class="social-auth-links">
                 <p class="mb-1">
-                    <a href="forgot-password.html">I forgot my password</a>
+                    <a href="ForgetPassword.aspx">I forgot my password</a>
                 </p>
                 <p class="mb-0">
                     <a href="/Register" class="text-center">New User? Register Here</a>

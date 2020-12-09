@@ -7,14 +7,13 @@ namespace KFE.MyClass
 {
     public class OrderController
     {
-        public int AddToOrders(Order order)
+        public void AddToOrders(Order order)
         {
             using (Kfe_Fresh_DBEntities dc = new Kfe_Fresh_DBEntities())
             {
                 dc.Orders.Add(order);
                 dc.SaveChanges();
             }
-            return order.OrderId;
         }
         public List<Order> GetOrdersByCustomer(int CustomerId)
         {
@@ -25,12 +24,16 @@ namespace KFE.MyClass
                 foreach(Order order in dc.Orders)
                 {
                     if (order.CustomerId == CustomerId)
+                    {
                         orders.Add(order);
+
+                    }
                 }
             }
+            orders.Reverse();
             return orders;
         }
-        public Order GetOrdersByOrder(int orderId)
+        public Order GetOrderByOrderId(int orderId)
         {
             Order order = new Order();
 
@@ -40,6 +43,28 @@ namespace KFE.MyClass
                 
             }
             return order;
+        }
+        public void saveOrderBy(Order order)
+        {
+            Order odr = new Order();
+
+            using (Kfe_Fresh_DBEntities dc = new Kfe_Fresh_DBEntities())
+            {
+                odr = dc.Orders.FirstOrDefault((x) => x.OrderId.Equals(order.OrderId));
+                odr.Status = order.Status;
+                dc.SaveChanges();
+            }
+        }
+        public void CancelOrder(int orderId)
+        {
+
+            using (Kfe_Fresh_DBEntities dc = new Kfe_Fresh_DBEntities())
+            {
+
+                var order = dc.Orders.FirstOrDefault((x) => x.OrderId.Equals(orderId));
+                order.Status = "Cancelled By User";
+                dc.SaveChanges();
+            }
         }
     }
 }

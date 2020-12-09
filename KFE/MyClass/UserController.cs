@@ -36,21 +36,53 @@ namespace KFE.MyClass
                 dc.SaveChanges();
             }
         }
-        public string IsCustomerExistBy(string userName,string password)
+        public int IsCustomerExistBy(string userName,string password)
         {
-            var result = "";
+            var result = 0;
             using (Kfe_Fresh_DBEntities dc = new Kfe_Fresh_DBEntities())
             {
                 foreach(Customer cus in dc.Customers)
                 {
                     if((cus.Email==userName||cus.Phone==userName)&& cus.Password == password)
                     {
-                        result = cus.CustomerId.ToString();
+                        result = cus.CustomerId;
                     }
                 }
             }
             return result;
         }
+        public bool hasCustomerById(int customerId)
+        {
+            bool result = false;
+            using (Kfe_Fresh_DBEntities dc = new Kfe_Fresh_DBEntities())
+            {
+                foreach (Customer cus in dc.Customers)
+                {
+                    if (cus.CustomerId == customerId)
+                    {
+                        result = true;
+                    }
+                }
+            }
+            return result;
+        }
+
+        public bool hasPendingCustomerById(int customerId)
+        {
+            bool result = false;
+            using (Kfe_Fresh_DBEntities dc = new Kfe_Fresh_DBEntities())
+            {
+                foreach (Customer cus in dc.Customers)
+                {
+                    if (cus.CustomerId == customerId && cus.Verified == false)
+                    {
+                        result = true;
+                    }
+                }
+            }
+            return result;
+        }
+
         public Customer GetCustomerBy(int customerId)
         {
             Customer result = new Customer();
@@ -59,6 +91,66 @@ namespace KFE.MyClass
                 foreach (Customer cus in dc.Customers)
                 {
                     if (cus.CustomerId == customerId)
+                    {
+                        result = cus;
+                    }
+                }
+            }
+            return result;
+        }
+        public void UpdateCustomerBy(Customer newCustomer)
+        {
+            using (Kfe_Fresh_DBEntities dc = new Kfe_Fresh_DBEntities())
+            {
+                var customer =dc.Customers.FirstOrDefault((x) => x.CustomerId.Equals(newCustomer.CustomerId));
+                if (customer != null)
+                {
+                    customer.Address = newCustomer.Address;
+                    customer.Name = newCustomer.Name;
+                    customer.Email = newCustomer.Email;
+                    customer.Phone = newCustomer.Phone;
+                    customer.Pin = newCustomer.Pin;
+                    customer.Verified = newCustomer.Verified;
+                    customer.Password = newCustomer.Password;
+                }
+                dc.SaveChanges();
+            }
+        }
+        public void UpdateCustomerPassWordBy(Customer newCustomer)
+        {
+            using (Kfe_Fresh_DBEntities dc = new Kfe_Fresh_DBEntities())
+            {
+                var customer = dc.Customers.FirstOrDefault((x) => x.CustomerId.Equals(newCustomer.CustomerId));
+                if (customer != null)
+                {
+                    customer.Password = newCustomer.Password;
+                }
+                dc.SaveChanges();
+            }
+        }
+        public bool EmailAlreadyExist(string email)
+        {
+            bool result =false;
+            using (Kfe_Fresh_DBEntities dc = new Kfe_Fresh_DBEntities())
+            {
+                foreach (Customer cus in dc.Customers)
+                {
+                    if (cus.Email == email)
+                    {
+                        result = true;
+                    }
+                }
+            }
+            return result;
+        }
+        public Customer GetUserByEmail(string email)
+        {
+            Customer result = null;
+            using (Kfe_Fresh_DBEntities dc = new Kfe_Fresh_DBEntities())
+            {
+                foreach (Customer cus in dc.Customers)
+                {
+                    if (cus.Email == email)
                     {
                         result = cus;
                     }

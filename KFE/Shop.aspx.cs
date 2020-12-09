@@ -9,6 +9,9 @@ namespace KFE
 {
     public partial class Shop : System.Web.UI.Page
     {
+        public int PageNumber = 0;
+        public int TotalPages = 0;
+        int ItemsLimit = 20;
         public List<Models.Slider> Sliders = new List<Models.Slider>();
 
         public List<Product> Products = new List<Product>();
@@ -34,10 +37,51 @@ namespace KFE
         }
         public void LoadProducts()
         {
-            var products = productsController.GetAllProducts();
-            Products.Clear();
-            for (int i = 0; i < products.Count; i++)
-                Products.Add(products[i]);
+            var productsCount = productsController.GetAllProductsCount();
+            TotalPages = productsCount / ItemsLimit;
+            if(productsCount % ItemsLimit != 0)
+            {
+                TotalPages++;
+            }
+            if (!string.IsNullOrEmpty(Request.QueryString.ToString()))
+            {
+                var pageNumber = HttpUtility.UrlDecode(Request.QueryString["Page"]);
+                if (pageNumber != "" || pageNumber!=string.Empty)
+                {
+                    if (int.TryParse(pageNumber, out PageNumber)) 
+                    {
+                        if(PageNumber> TotalPages)
+                        {
+                            Response.Redirect("/Shop");
+                        }
+                        int startpos = (PageNumber - 1) * ItemsLimit;
+                        var products = productsController.GetProductsFromAndTo(startpos, (startpos + ItemsLimit));
+                        Products.Clear();
+                        for (int i = 0; i < products.Count; i++)
+                            Products.Add(products[i]);
+                    }
+                    else
+                    {
+                        Response.Redirect("/Shop");
+                    }
+                }
+                else
+                {
+                    Response.Redirect("/Oops");
+                }
+
+            }
+            else
+            {
+                PageNumber = 1;
+
+                int startpos = 0;
+                var products = productsController.GetProductsFromAndTo(startpos, (startpos + ItemsLimit));
+                Products.Clear();
+                for (int i = 0; i < products.Count; i++)
+                    Products.Add(products[i]);
+            }
+            //var products = productsController.GetAllProducts();
 
             //hfe.cmd = new SqlCommand("select * from Products");
             //hfe.getdata();

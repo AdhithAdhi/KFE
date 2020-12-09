@@ -33,6 +33,8 @@ namespace KFE
                 Reload();
             }
             string fileName = name + "_" + Guid.NewGuid().ToString() + "_" + customFile.FileName;
+            fileName = fileName.Replace('/', '_');
+            fileName = fileName.Replace('\\', '_');
             //Response.Redirect("/test");
             try
             {
@@ -54,14 +56,6 @@ namespace KFE
 
             });
 
-            //hfe.cmd = new SqlCommand("insert into Products(Title,Description,ImagePath,Price)values(@ti,@de,@pa,@pr)");
-
-            //hfe.cmd.Parameters.AddWithValue("@ti", name);
-            //hfe.cmd.Parameters.AddWithValue("@de", description);
-            //hfe.cmd.Parameters.AddWithValue("@pa", fileName);
-            //hfe.cmd.Parameters.AddWithValue("@pr", price);
-            //hfe.setData("Products");
-
             Reload();
         }
 
@@ -82,20 +76,6 @@ namespace KFE
                 HttpContext.Current.Response.Write("<script>alert('" + uploader.DeleteFile("Products", path) +"!');</script>");
             }
 
-            //hfe.cmd = new SqlCommand("select * from Products where Id =@id");
-            //hfe.cmd.Parameters.AddWithValue("id", id);
-            //hfe.getdata();
-            //if (hfe.dt.Rows.Count > 0)
-            //{
-            //    hfe.cmd = new SqlCommand("delete from Products where Id =@id");
-            //    hfe.cmd.Parameters.AddWithValue("id", id);
-
-            //    if (hfe.setData() > 0)
-            //    {
-            //        string filepath = hfe.dt.Rows[0]["ImagePath"].ToString();
-            //        File.Delete(Server.MapPath("Images") + "\\Products\\" + filepath);
-            //    }
-            //}
         }
     }
 }

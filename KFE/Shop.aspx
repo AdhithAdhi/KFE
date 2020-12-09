@@ -1,10 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/User.Master" AutoEventWireup="true" CodeBehind="Shop.aspx.cs" Inherits="KFE.Shop" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <title>Shop</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
     <div class="container">
+    
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <%="" %>
@@ -67,21 +68,39 @@
             <div class="col-lg-3 col-6">
                 <div class="card card-success card-outline">
                     <div class="card-header">
-                        <img src="https://static.kfefresh.com/Images/Products/<%:product.ImagePath%>" style="width:100%" alt="Product Image">
+                        <a href="/ProductView?Product=<%:KFE.MyClass.EncryptDecrypt.Encrypt(HttpUtility.UrlEncode(product.Id.ToString())) %>">
+                        <img src="https://static.kfefresh.com/Images/Products/<%:product.ImagePath%>" style="width: 100%" alt="Product Image">
+                        </a>
                     </div>
                     <div class="card-body">
-                        <h4 class="card-title text-bold"><%:product.Title %></h4>
-                        
-                                <p class="card-text">₹ <%:product.Price%>/Kg</p>
+                        <h4 class="card-title text-bold">
+                            <a href="/ProductView?Product=<%:KFE.MyClass.EncryptDecrypt.Encrypt(HttpUtility.UrlEncode(product.Id.ToString())) %>"><%:product.Title %></a>
+                        </h4>
+
+                        <p class="card-text">₹ <%:product.Price%>/Kg</p>
                     </div>
                     <div class="card-footer">
-                        <a href="/ProductView?Product=<%:KFE.MyClass.EncryptDecrypt.Encrypt(HttpUtility.UrlEncode(product.Id.ToString())) %>" class="card-link btn btn-success">View</a>
-                        <a href="#" class="card-link btn btn-outline-success">Add to Cart</a>
+                        <a href="/ProductView?Product=<%:KFE.MyClass.EncryptDecrypt.Encrypt(HttpUtility.UrlEncode(product.Id.ToString())) %>" class="card-link btn btn-sm btn-success float-left">View</a>
+                        <a href="/AddToCart?Product=<%:KFE.MyClass.EncryptDecrypt.Encrypt(product.Id.ToString())%>" class="card-link btn btn-sm btn-outline-success float-right">Add to Cart</a>
                     </div>
                 </div>
             </div>
             <%} %>
         </div>
+        
+          <nav aria-label="Contacts Page Navigation">
+            <ul class="pagination justify-content-center m-0">
+              <%for (int i = 1; i <= TotalPages; i++)
+                  {
+                      if (i == PageNumber)
+                      { %><li class="page-item active"><a class="page-link" href="/Shop?Page=<%:i %>"><%:i %></a></li>
+                    <%} else
+                        { %>
+                          <li class="page-item"><a class="page-link" href="/Shop?Page=<%:i %>"><%:i %></a></li>
+                      <%}
+                  } %>
+            </ul>
+          </nav>
         <!-- /.row -->
     </div>
 

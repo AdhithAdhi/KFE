@@ -12,8 +12,6 @@ namespace KFE
         public List<Cart> carts = new List<Cart>();
         MyClass.CartController cartController = new MyClass.CartController();
         MyClass.ProductsController productsController = new MyClass.ProductsController();
-        MyClass.UserController userController = new MyClass.UserController();
-        MyClass.OrderController orderController = new MyClass.OrderController();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -37,7 +35,10 @@ namespace KFE
             decimal deliveryCharge = 0;
             for(int i=0;i<carts.Count;i++)
             {
-                subtotal += productsController.GetProductBy(carts[i].ProductId).Price * carts[i].Count;
+                if (!IsProductOutOfStock(carts[i].ProductId))
+                {
+                    subtotal += productsController.GetProductBy(carts[i].ProductId).Price * carts[i].Count;
+                }
             }
             SubTotalText.Text = subtotal.ToString();
             ShippingText.Text = deliveryCharge.ToString();
@@ -50,36 +51,27 @@ namespace KFE
 
         protected void BuyBtn_Click(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(Session["customerId"].ToString())==0)
+            var haveNoStock = false;
+            for (int i = 0; i < carts.Count; i++)
             {
-                Response.Redirect("/Login");
-            }
-            int orderId=orderController.AddToOrders(new Order()
-            {
-                Date = DateTime.Now,
-                CustomerId = Convert.ToInt32(Session["customerId"].ToString()),
-                Price = Convert.ToDecimal(TotalText.Text),
-                Status="Prosessing..",
-                Address=userController.GetCustomerBy(Convert.ToInt32(Session["customerId"].ToString())).Address
-            }) ;
-            foreach(Cart cart in carts)
-            {
-                orderController.GetOrdersByOrder(orderId).OrderItems.Add(new OrderItem()
+                if (IsProductOutOfStock(carts[i].ProductId))
                 {
-                    OrderId = orderId,
-                    ProductId=cart.ProductId,
-                    Quantity=cart.Count,
-                    Amount= cart.Count * productsController.GetProductBy(cart.ProductId).Price,
-                    Extras=cart.Extras,
-                }) ;
-
+                    haveNoStock = true;
+                }
             }
-            foreach (Cart cart in carts)
+            if (haveNoStock == false)
             {
-                cartController.DeleteById(cart.CartId);
-
+                Response.Redirect("/CheckOut");
             }
-            Response.Redirect("/MyOrders");
+        }
+        protected bool IsProductOutOfStock(int pId)
+        {
+            var result = false;
+            if (productsController.GetProductBy(pId).StockCount <= 0) 
+            {
+                result = true;
+            }
+            return result;
         }
     }
 }

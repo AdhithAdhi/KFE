@@ -19,6 +19,8 @@ namespace KFE
             {
                 Session.Abandon();
                 Session.Clear();
+
+                ErrorField.Visible = false;
             }
         }
 
@@ -27,7 +29,12 @@ namespace KFE
             var username = Username.Text;
             var password = Crypto.Hash(UserPassword.Text);
             var result = userController.IsCustomerExistBy(username, password);
-            if (result!="")
+            if (userController.hasPendingCustomerById(Convert.ToInt32(result)))
+            {
+                Response.Redirect("/VerificationError?Validate=" + MyClass.EncryptDecrypt.Encrypt(result.ToString()));
+                //return;
+            }
+            if (result!=0)
             {
                 Session["name"] = "user";
                 Session["customerId"] = result;
@@ -36,8 +43,9 @@ namespace KFE
             }
             else
             {
-
-                Response.Redirect("/Login");
+                ErrorField.Visible = true;
+                Username.Text = "";
+                UserPassword.Text = "";
             }
         }
     }

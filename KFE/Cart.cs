@@ -20,7 +20,7 @@ namespace KFE
         public decimal Count { get; set; }
         public string Extras { get; set; }
     
-        public virtual Customer Customer { get; set; }
         public virtual Product Product { get; set; }
+        public virtual Customer Customer { get; set; }
     }
 }

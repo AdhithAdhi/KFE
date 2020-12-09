@@ -9,9 +9,10 @@ namespace KFE
 {
     public partial class ProductView : System.Web.UI.Page
     {
-        MyClass.ProductsController productsController = new MyClass.ProductsController();
+        public MyClass.ProductsController productsController = new MyClass.ProductsController();
         MyClass.CartController cartController = new MyClass.CartController();
         MyClass.Categories categories = new MyClass.Categories();
+        MyClass.DeliveryPointsController deliveryPinController = new MyClass.DeliveryPointsController();
         int ProductId = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -37,6 +38,12 @@ namespace KFE
             {
                 Response.Redirect("/Shop");
             }
+            if (!IsPostBack)
+            {
+
+                StockResult.Text = "";
+                DeliveryResultText.Text = "Enter pin number to check delivery";
+            }
         }
         void loadProductBy(int id)
         {
@@ -45,8 +52,9 @@ namespace KFE
             ProductNameText.Text = product.Title;
             DescriptionText.Text = product.Description;
             CategoryText.Text = categories.GetCategoryByID(product.CategoryId).Name;
-            PriceText.Text = product.Price+"/Kg";
-            FinalPriceText.Text = product.Price + "/Kg";
+
+            PriceText.Text = product.Price + "/Kg";
+            FinalPriceText.Text = product.Price + "/Kg (final price)";
             if (Session["customerId"] != null)
             {
                 if (cartController.HasAllReadyExist(Convert.ToInt32(Session["customerId"].ToString()), ProductId))
@@ -58,6 +66,7 @@ namespace KFE
                     BtnAddToCart.Text = "Add to Cart";
                 }
             }
+            BtnAddToCart.Enabled = true;
         }
         string Decrypt(string value)
         {
@@ -83,20 +92,60 @@ namespace KFE
                     {
                         value = "Need Cleaning";
                     }
-                    cartController.AddToCart(new Cart()
+                    if(productsController.GetProductBy(ProductId).StockCount >= Convert.ToDecimal(QantityText.Text))
                     {
-                        CustomerId = Convert.ToInt32(Session["customerId"].ToString()),
-                        ProductId = ProductId,
-                        Count = Convert.ToDecimal(QantityText.Text),
-                        Extras = value,
-                    });
-                    Response.Redirect(Request.RawUrl);
+                        cartController.AddToCart(new Cart()
+                        {
+                            CustomerId = Convert.ToInt32(Session["customerId"].ToString()),
+                            ProductId = ProductId,
+                            Count = Convert.ToDecimal(QantityText.Text),
+                            Extras = value,
+                        });
+                        Response.Redirect(Request.RawUrl);
+                    }
+                    else
+                    {
+                        StockResult.Text = "We don't have that much in stock. Please enter lower quantity or call us directly";
+                        //Page.Controls.Add(MyClass.Message.Messagebox("We don't have that much in stock. Please enter lower quantity or call us directly"));
+                    }
                 }
             }
             else
             {
                 Response.Redirect("/Login");
             }
+        }
+
+        protected void CheckDeliveryBtn_Click(object sender, EventArgs e)
+        {
+            int enterdPin = Convert.ToInt32(DeliveryPin.Text);
+            if (deliveryPinController.hasPin(enterdPin))
+            {
+                DeliveryResultText.Text = "Delivery is availabale at your place";
+            }
+            else
+            {
+                DeliveryResultText.Text = "Delivery is not availabale at your place";
+            }
+        }
+        protected bool HasStock()
+        {
+            bool result = false; 
+            if (productsController.GetProductBy(ProductId).StockCount > 0)
+            {
+                result = true;
+            }
+            return result;
+        }
+        protected string GetProductName()
+        {
+            return productsController.GetProductBy(ProductId).Title;
+        }
+        protected List<Product> RandomProducts()
+        {
+            Random rnd = new Random();
+            var prds = productsController.GetAllProducts().OrderBy(x => rnd.Next()).Take(3);
+            return prds.ToList();
         }
     }
 }

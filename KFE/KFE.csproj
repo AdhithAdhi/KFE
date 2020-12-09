@@ -38,6 +38,24 @@
     <WarningLevel>4</WarningLevel>
     <IncludeIisSettings>false</IncludeIisSettings>
     <LegacyPublishPropertiesPageEnabled>true</LegacyPublishPropertiesPageEnabled>
+    <PublishDatabaseSettings>
+      <Objects>
+        <ObjectGroup Name="Kfe_Fresh_DBConnectionString-Deployment" Order="1">
+          <Destination Path="" />
+          <Object Type="DbFullSql">
+            <PreSource Path="Data Source=148.72.232.167%3bInitial Catalog=Kfe_Fresh_DB%3bPersist Security Info=True%3bUser ID=kfefresh%3bPassword=kf3%40Fr3sh" ScriptSchema="True" ScriptData="False" CopyAllFullTextCatalogs="False" DriDefaults="True" />
+            <Source Path="obj\Debug\AutoScripts\Kfe_Fresh_DBConnectionString-Deployment_SchemaOnly.sql" Transacted="True" />
+          </Object>
+        </ObjectGroup>
+        <ObjectGroup Name="Kfe_Fresh_DBEntities-Deployment" Order="2">
+          <Destination Path="" />
+          <Object Type="DbFullSql">
+            <PreSource Path="Data Source=148.72.232.167%3bInitial Catalog=Kfe_Fresh_DB%3bUser ID=kfefresh%3bPassword=kf3%40Fr3sh%3bConnect Timeout=30%3bEncrypt=False%3bTrustServerCertificate=False%3bApplication Name=EntityFramework" ScriptSchema="True" ScriptData="False" CopyAllFullTextCatalogs="False" DriDefaults="True" />
+            <Source Path="obj\Debug\AutoScripts\Kfe_Fresh_DBEntities-Deployment_SchemaOnly.sql" Transacted="True" />
+          </Object>
+        </ObjectGroup>
+      </Objects>
+    </PublishDatabaseSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -222,13 +240,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AddToCart.aspx" />
     <Content Include="AdiminCategories.aspx" />
     <Content Include="AdminChangePass.aspx" />
+    <Content Include="AdminDeliveryArea.aspx" />
     <Content Include="AdminGallery.aspx" />
     <Content Include="AdminHome.aspx" />
     <Content Include="AdminLogin.aspx" />
     <Content Include="AdminLogout.aspx" />
     <Content Include="AdminOrders.aspx" />
+    <Content Include="AdminViewOrder.aspx" />
+    <Content Include="CancelOrder.aspx" />
+    <Content Include="CancelledOrders.aspx" />
+    <Content Include="ChangePassword.aspx" />
+    <Content Include="CheckOut.aspx" />
+    <Content Include="ForgetPassword.aspx" />
+    <Content Include="Index.aspx" />
+    <Content Include="Invoice-Print.aspx" />
+    <Content Include="Invoice.aspx" />
     <Content Include="MyCart.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -248,8 +277,13 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Admin.Master" />
-    <Content Include="Index.aspx" />
+    <Content Include="Index2.aspx" />
     <Content Include="Oops.aspx" />
+    <Content Include="OrderDeliverd.aspx" />
+    <Content Include="OrderPacked.aspx" />
+    <Content Include="OrdersAccepted.aspx" />
+    <Content Include="OrderShipped.aspx" />
+    <Content Include="OrdersProcessing.aspx" />
     <Content Include="ProductView.aspx" />
     <Content Include="KfeModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -271,6 +305,7 @@
     <Content Include="KfeModel.edmx.diagram">
       <DependentUpon>KfeModel.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\kfefresh.com - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\kfefresh.com - Web Deploy1.pubxml" />
     <None Include="Properties\Settings.settings">
@@ -284,6 +319,8 @@
     <Content Include="MyPersonalInfo.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="RemoveFromCart.aspx" />
+    <Content Include="ResetPassword.aspx" />
+    <Content Include="Search.aspx" />
     <Content Include="Shop.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -2150,11 +2187,22 @@
     <Content Include="template\user\assets\js\slick.js" />
     <Content Include="template\user\assets\js\waypoints.min.js" />
     <Content Include="Logout.aspx" />
+    <Content Include="Validate.aspx" />
+    <Content Include="VerificationError.aspx" />
+    <Content Include="VerificationSuccess.aspx" />
+    <Content Include="ViewOrder.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddToCart.aspx.cs">
+      <DependentUpon>AddToCart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddToCart.aspx.designer.cs">
+      <DependentUpon>AddToCart.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdiminCategories.aspx.cs">
       <DependentUpon>AdiminCategories.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2175,6 +2223,13 @@
     </Compile>
     <Compile Include="AdminChangePass.aspx.designer.cs">
       <DependentUpon>AdminChangePass.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminDeliveryArea.aspx.cs">
+      <DependentUpon>AdminDeliveryArea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminDeliveryArea.aspx.designer.cs">
+      <DependentUpon>AdminDeliveryArea.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminGallery.aspx.cs">
       <DependentUpon>AdminGallery.aspx</DependentUpon>
@@ -2199,6 +2254,7 @@
     </Compile>
     <Compile Include="AdminLogin.cs">
       <DependentUpon>KfeModel.tt</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AdminLogout.aspx.cs">
       <DependentUpon>AdminLogout.aspx</DependentUpon>
@@ -2214,9 +2270,72 @@
     <Compile Include="AdminOrders.aspx.designer.cs">
       <DependentUpon>AdminOrders.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AdminViewOrder.aspx.cs">
+      <DependentUpon>AdminViewOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminViewOrder.aspx.designer.cs">
+      <DependentUpon>AdminViewOrder.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="CancelOrder.aspx.cs">
+      <DependentUpon>CancelOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CancelOrder.aspx.designer.cs">
+      <DependentUpon>CancelOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CancelledOrders.aspx.cs">
+      <DependentUpon>CancelledOrders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CancelledOrders.aspx.designer.cs">
+      <DependentUpon>CancelledOrders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CheckOut.aspx.cs">
+      <DependentUpon>CheckOut.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CheckOut.aspx.designer.cs">
+      <DependentUpon>CheckOut.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ForgetPassword.aspx.cs">
+      <DependentUpon>ForgetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ForgetPassword.aspx.designer.cs">
+      <DependentUpon>ForgetPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Invoice-Print.aspx.cs">
+      <DependentUpon>Invoice-Print.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Invoice-Print.aspx.designer.cs">
+      <DependentUpon>Invoice-Print.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Invoice.aspx.cs">
+      <DependentUpon>Invoice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Invoice.aspx.designer.cs">
+      <DependentUpon>Invoice.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MyCart.aspx.cs">
       <DependentUpon>MyCart.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2246,16 +2365,21 @@
     <Compile Include="HitCounter.cs">
       <DependentUpon>KfeModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Index.aspx.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
+    <Compile Include="Index2.aspx.cs">
+      <DependentUpon>Index2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Index.aspx.designer.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
+    <Compile Include="Index2.aspx.designer.cs">
+      <DependentUpon>Index2.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MyClass\AdminController.cs" />
     <Compile Include="MyClass\CartController.cs" />
+    <Compile Include="MyClass\DeliveryPointsController.cs" />
     <Compile Include="MyClass\EncryptDecrypt.cs" />
+    <Compile Include="MyClass\Message.cs" />
     <Compile Include="MyClass\OrderController.cs" />
+    <Compile Include="MyClass\OrderdItemController.cs" />
+    <Compile Include="MyClass\Mail.cs" />
     <Compile Include="Oops.aspx.cs">
       <DependentUpon>Oops.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2263,8 +2387,43 @@
     <Compile Include="Oops.aspx.designer.cs">
       <DependentUpon>Oops.aspx</DependentUpon>
     </Compile>
+    <Compile Include="OrderDeliverd.aspx.cs">
+      <DependentUpon>OrderDeliverd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrderDeliverd.aspx.designer.cs">
+      <DependentUpon>OrderDeliverd.aspx</DependentUpon>
+    </Compile>
     <Compile Include="OrderItem.cs">
       <DependentUpon>KfeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderPacked.aspx.cs">
+      <DependentUpon>OrderPacked.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrderPacked.aspx.designer.cs">
+      <DependentUpon>OrderPacked.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OrdersAccepted.aspx.cs">
+      <DependentUpon>OrdersAccepted.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrdersAccepted.aspx.designer.cs">
+      <DependentUpon>OrdersAccepted.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OrderShipped.aspx.cs">
+      <DependentUpon>OrderShipped.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrderShipped.aspx.designer.cs">
+      <DependentUpon>OrderShipped.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OrdersProcessing.aspx.cs">
+      <DependentUpon>OrdersProcessing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrdersProcessing.aspx.designer.cs">
+      <DependentUpon>OrdersProcessing.aspx</DependentUpon>
     </Compile>
     <Compile Include="ProductView.aspx.cs">
       <DependentUpon>ProductView.aspx</DependentUpon>
@@ -2353,6 +2512,20 @@
     <Compile Include="RemoveFromCart.aspx.designer.cs">
       <DependentUpon>RemoveFromCart.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ResetPassword.aspx.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResetPassword.aspx.designer.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Search.aspx.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Search.aspx.designer.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Shop.aspx.cs">
       <DependentUpon>Shop.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2389,6 +2562,34 @@
     </Compile>
     <Compile Include="Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Validate.aspx.cs">
+      <DependentUpon>Validate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Validate.aspx.designer.cs">
+      <DependentUpon>Validate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VerificationError.aspx.cs">
+      <DependentUpon>VerificationError.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VerificationError.aspx.designer.cs">
+      <DependentUpon>VerificationError.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VerificationSuccess.aspx.cs">
+      <DependentUpon>VerificationSuccess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VerificationSuccess.aspx.designer.cs">
+      <DependentUpon>VerificationSuccess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewOrder.aspx.cs">
+      <DependentUpon>ViewOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewOrder.aspx.designer.cs">
+      <DependentUpon>ViewOrder.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
@@ -2687,6 +2888,9 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

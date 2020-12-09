@@ -4,7 +4,6 @@
 
 <html>
 <head runat="server">
-    <title></title>
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="~/KFE_128.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,14 +34,12 @@
                     <img src="Images/KFE_128.png" alt="KFE" class="brand-image img-circle elevation-2"
                         style="opacity: .8">
                 </a>
-
-                <div class="input-group input-group mr-5">
-                  <input type="text" class="form-control">
+                <div class="input-group input-group mr-5 form-group">
+                  <input type="text"  runat="server" id="SearchBox" class="form-control text-bold">
                   <span class="input-group-append">
-                    <button type="button" class="btn btn-success btn-flat"><i class="fas fa-search"></i></button>
+                    <button type="button" id="searchBtn" class="btn btn-success btn-flat"><i class="fas fa-search" onclick="searchFunction()"></i></button>
                   </span>
                 </div>
-
                 <!-- Right navbar links -->
                 <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
                     <!-- Messages Dropdown Menu -->
@@ -57,12 +54,12 @@
                             <span class="dropdown-header">Your Account</span>
                             <div class="dropdown-divider"></div>
                             <a href="/MyPersonalInfo" class="dropdown-item">
-                                <i class="fas fa-edit mr-2"></i>Personal
+                                <i class="fas fa-edit mr-2"></i>My Personal
              
                             </a>
                             <div class="dropdown-divider"></div>
                             <a href="/MyOrders" class="dropdown-item">
-                                <i class="fas fa-users mr-2"></i>Orders
+                                <i class="fas fa-tags mr-2"></i>My Orders
              
                             </a>
                             <div class="dropdown-divider"></div>
@@ -80,7 +77,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link" href="/MyCart">
                             <i class="fas fa-shopping-cart mr-1"></i>
-                            <span class="badge badge-warning navbar-badge">15</span>
+                            <%--<span class="badge badge-warning navbar-badge">0</span>--%>
                         </a>
                     </li>
                 </ul>
@@ -121,13 +118,8 @@
 
         <!-- Main Footer -->
         <footer class="main-footer">
-            <!-- To the right -->
-            <div class="float-right d-none d-sm-inline">
-                Anything you want
-   
-            </div>
             <!-- Default to the left -->
-            <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; 2020-2023 <a href="https://kfefresh.com">KfeFresh.com</a>.</strong> All rights reserved.
  
         </footer>
     </div>
@@ -135,6 +127,28 @@
 
 
     <!-- REQUIRED SCRIPTS -->
+
+    <script>
+        // Get the input field
+        var input = document.getElementById("SearchBox");
+
+        // Execute a function when the user releases a key on the keyboard
+        input.addEventListener("keydown", function (event) {
+            // Number 13 is the "Enter" key on the keyboard
+            if (event.keyCode === 13) {
+                // Cancel the default action, if needed
+                event.preventDefault();
+                // Trigger the button element with a click
+                searchFunction();
+            }
+        });
+        function searchFunction() {
+            var qry = document.getElementById("SearchBox").value;
+            if (qry != "") {
+                document.location.href = 'Search.aspx?S=' + qry; 
+            }
+        }
+    </script>
     <!-- jQuery -->
     <script src="template/Admin/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap -->

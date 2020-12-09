@@ -69,7 +69,7 @@
             <!-- Brand Logo -->
             <a href="AdminHome" class="brand-link">
                 <img src="Images/KFE_128.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-                     style="opacity: .8">
+                    style="opacity: .8">
                 <span class="brand-text font-weight-light">KFE Admin</span>
             </a>
 
@@ -116,17 +116,60 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="/AdminOrders" class="nav-link">
+
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-shopping-cart"></i>
                                 <p>
                                     Orders
+               
+                                    <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="OrdersProcessing.aspx" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Processing</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item has-treeview">
+                                    <a href="OrdersAccepted.aspx" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Accepted
+                                            <i class="right fas nav-icon"></i>
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="OrderPacked.aspx" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Packed</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="OrderShipped.aspx" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Shipped</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="OrderDeliverd.aspx" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Deliverd</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="CancelledOrders.aspx" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Cancelled</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
-                         <li class="nav-item">
-                            <a href="/AdminPinNumbers" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-cart"></i>
+                        <li class="nav-item">
+                            <a href="/AdminDeliveryArea" class="nav-link">
+                                <i class="nav-icon fas fa-map-pin"></i>
                                 <p>
                                     Delivery Points
                                 </p>
@@ -139,7 +182,8 @@
                                     Slider Images
                                 </p>
                             </a>
-                        </li><li class="nav-item">
+                        </li>
+                        <li class="nav-item">
                             <a href="/AdminGallery" class="nav-link">
                                 <i class="nav-icon fas fa-image"></i>
                                 <p>
@@ -184,17 +228,17 @@
             <!-- Content Header (Page header) -->
             <div class="content-header">
                 <div class="container-fluid">
-                    
-                </div><!-- /.container-fluid -->
+                </div>
+                <!-- /.container-fluid -->
             </div>
             <!-- /.content-header -->
             <!-- Main content -->
             <div class="content">
                 <!-- /.container-fluid -->
-                    <div>
-                        <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
-                        </asp:ContentPlaceHolder>
-                    </div>
+                <div>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
             </div>
             <!-- /.content -->
         </div>
@@ -215,13 +259,29 @@
     </div>
     <!-- ./wrapper -->
     <!-- REQUIRED SCRIPTS -->
-  <%--  <!-- jQuery -->
+      <!-- jQuery -->
     <script src="template/Admin/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="template/Admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE -->
-    <script src="template/Admin/dist/js/adminlte.js"></script>--%>
-   <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
+    <script src="template/Admin/dist/js/adminlte.js"></script>
+    <script>
+  $(function () {
+    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+      event.preventDefault();
+      $(this).ekkoLightbox({
+        alwaysShowClose: true
+      });
+    });
+
+    $('.filter-container').filterizr({gutterPixels: 3});
+    $('.btn[data-filter]').on('click', function() {
+      $('.btn[data-filter]').removeClass('active');
+      $(this).addClass('active');
+    });
+  })
+</script>
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
     </asp:ContentPlaceHolder>
 </body>
 </html>

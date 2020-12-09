@@ -5,15 +5,16 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
+using System.Web.Helpers;
 
 namespace KFE.MyClass
 {
     public static class EncryptDecrypt
     {
+        static string EncryptionKey = "kf3fr3sh%469DQ3nf55";
         public static string Encrypt(string clearText)
         {
-            
-            string EncryptionKey = "kf3fr3sh%2KFE43kf5&&";
+
             byte[] clearBytes = Encoding.Unicode.GetBytes(clearText);
             using (Aes encryptor = Aes.Create())
             {
@@ -30,7 +31,9 @@ namespace KFE.MyClass
                     clearText = Convert.ToBase64String(ms.ToArray());
                 }
             }
-            return clearText;
+            byte[] b = System.Text.ASCIIEncoding.ASCII.GetBytes(clearText);
+            string AsciiEncrypted = Convert.ToBase64String(b);
+            return AsciiEncrypted;
         }
 
 
@@ -38,7 +41,9 @@ namespace KFE.MyClass
         {
             try
             {
-                string EncryptionKey = "kf3fr3sh%2KFE43kf5&&";
+                byte[] b;
+                b = Convert.FromBase64String(cipherText);
+                cipherText = System.Text.ASCIIEncoding.ASCII.GetString(b);
                 cipherText = cipherText.Replace(" ", "+");
                 byte[] cipherBytes = Convert.FromBase64String(cipherText);
                 using (Aes encryptor = Aes.Create())

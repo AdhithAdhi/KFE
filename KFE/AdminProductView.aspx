@@ -83,7 +83,7 @@
                     <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title" />
                     <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" />
                     <asp:BoundField DataField="StockCount" HeaderText="StockCount" SortExpression="StockCount" />
-                    <asp:CommandField ShowDeleteButton="True" ShowEditButton="True">
+                    <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" ButtonType="Button">
                     <ControlStyle CssClass="btn btn-primary" />
                     </asp:CommandField>
                 </Columns>

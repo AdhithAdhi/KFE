@@ -32,12 +32,8 @@ namespace KFE
                 Reload();
             }
             string fileName = name + "_" + Guid.NewGuid().ToString() + "_" + customFile.FileName;
-            //var directory = Server.MapPath("~/Images/Sliders/");
-            //if (!Directory.Exists(directory))
-            //{
-            //    Directory.CreateDirectory(directory);
-            //}
-            ////Response.Redirect("/test");
+            fileName = fileName.Replace('/', '_');
+            fileName = fileName.Replace('\\', '_');
             try
             {
                 uploader.FTPUpload(customFile, "Sliders", fileName);

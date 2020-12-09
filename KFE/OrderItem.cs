@@ -18,10 +18,10 @@ namespace KFE
         public int ProductId { get; set; }
         public decimal Quantity { get; set; }
         public decimal Amount { get; set; }
-        public int OrderId { get; set; }
+        public Nullable<int> OrderId { get; set; }
         public string Extras { get; set; }
     
-        public virtual Order Order { get; set; }
         public virtual Product Product { get; set; }
+        public virtual Order Order { get; set; }
     }
 }

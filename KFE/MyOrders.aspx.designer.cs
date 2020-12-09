@@ -15,12 +15,12 @@ namespace KFE
     {
 
         /// <summary>
-        /// ViewOrderBtn control.
+        /// cart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ViewOrderBtn;
+        protected global::System.Web.UI.HtmlControls.HtmlForm cart;
     }
 }

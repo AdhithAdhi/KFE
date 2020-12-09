@@ -42,6 +42,7 @@
           <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Phone" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="Password" Type="varchar(max)" Nullable="false" />
+          <Property Name="Verified" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="DeliveryPincodes">
           <Key>
@@ -74,7 +75,7 @@
           <Property Name="ProductId" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="OrderId" Type="int" />
           <Property Name="Extras" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Orders">
@@ -87,7 +88,10 @@
           <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Status" Type="varchar(max)" Nullable="false" />
           <Property Name="Extras" Type="varchar(max)" />
-          <Property Name="Address" Type="varchar(max)" />
+          <Property Name="Address" Type="varchar(max)" Nullable="false" />
+          <Property Name="ContactNumber" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="ContactEmail" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PaymentType" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="Products">
           <Key>
@@ -145,7 +149,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderItem_ToOrders">
-          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
           <End Role="OrderItem" Type="Self.OrderItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Orders">
@@ -241,18 +245,12 @@
           <EntitySet Name="AdminLogins" EntityType="Kfe_Fresh_DBModel.AdminLogin" />
           <EntitySet Name="Carts" EntityType="Kfe_Fresh_DBModel.Cart" />
           <EntitySet Name="Categories" EntityType="Kfe_Fresh_DBModel.Category" />
-          <EntitySet Name="Customers" EntityType="Kfe_Fresh_DBModel.Customer" />
           <EntitySet Name="DeliveryPincodes" EntityType="Kfe_Fresh_DBModel.DeliveryPincode" />
           <EntitySet Name="Galleries" EntityType="Kfe_Fresh_DBModel.Gallery" />
           <EntitySet Name="HitCounters" EntityType="Kfe_Fresh_DBModel.HitCounter" />
           <EntitySet Name="OrderItems" EntityType="Kfe_Fresh_DBModel.OrderItem" />
-          <EntitySet Name="Orders" EntityType="Kfe_Fresh_DBModel.Order" />
           <EntitySet Name="Products" EntityType="Kfe_Fresh_DBModel.Product" />
           <EntitySet Name="SliderImages" EntityType="Kfe_Fresh_DBModel.SliderImage" />
-          <AssociationSet Name="FK_Cart_ToCustomer" Association="Kfe_Fresh_DBModel.FK_Cart_ToCustomer">
-            <End Role="Customer" EntitySet="Customers" />
-            <End Role="Cart" EntitySet="Carts" />
-          </AssociationSet>
           <AssociationSet Name="FK_Cart_ToProducts" Association="Kfe_Fresh_DBModel.FK_Cart_ToProducts">
             <End Role="Product" EntitySet="Products" />
             <End Role="Cart" EntitySet="Carts" />
@@ -265,16 +263,22 @@
             <End Role="Category" EntitySet="Categories" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
+          <AssociationSet Name="FK_OrderItem_ToProducts" Association="Kfe_Fresh_DBModel.FK_OrderItem_ToProducts">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="OrderItem" EntitySet="OrderItems" />
+          </AssociationSet>
+          <EntitySet Name="Customers" EntityType="Kfe_Fresh_DBModel.Customer" />
+          <AssociationSet Name="FK_Cart_ToCustomer" Association="Kfe_Fresh_DBModel.FK_Cart_ToCustomer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Cart" EntitySet="Carts" />
+          </AssociationSet>
+          <EntitySet Name="Orders" EntityType="Kfe_Fresh_DBModel.Order" />
           <AssociationSet Name="FK_Orders_ToCustomers" Association="Kfe_Fresh_DBModel.FK_Orders_ToCustomers">
             <End Role="Customer" EntitySet="Customers" />
             <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderItem_ToOrders" Association="Kfe_Fresh_DBModel.FK_OrderItem_ToOrders">
             <End Role="Order" EntitySet="Orders" />
-            <End Role="OrderItem" EntitySet="OrderItems" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OrderItem_ToProducts" Association="Kfe_Fresh_DBModel.FK_OrderItem_ToProducts">
-            <End Role="Product" EntitySet="Products" />
             <End Role="OrderItem" EntitySet="OrderItems" />
           </AssociationSet>
         </EntityContainer>
@@ -295,8 +299,8 @@
           <Property Name="ProductId" Type="Int32" Nullable="false" />
           <Property Name="Count" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="Extras" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Customer" Relationship="Kfe_Fresh_DBModel.FK_Cart_ToCustomer" FromRole="Cart" ToRole="Customer" />
           <NavigationProperty Name="Product" Relationship="Kfe_Fresh_DBModel.FK_Cart_ToProducts" FromRole="Cart" ToRole="Product" />
+          <NavigationProperty Name="Customer" Relationship="Kfe_Fresh_DBModel.FK_Cart_ToCustomer" FromRole="Cart" ToRole="Customer" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -307,20 +311,6 @@
           <Property Name="SF" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Galleries" Relationship="Kfe_Fresh_DBModel.FK_Gallery_ToCategory" FromRole="Category" ToRole="Gallery" />
           <NavigationProperty Name="Products" Relationship="Kfe_Fresh_DBModel.FK_Products_ToCategory" FromRole="Category" ToRole="Product" />
-        </EntityType>
-        <EntityType Name="Customer">
-          <Key>
-            <PropertyRef Name="CustomerId" />
-          </Key>
-          <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Pin" Type="Int32" Nullable="false" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Phone" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Carts" Relationship="Kfe_Fresh_DBModel.FK_Cart_ToCustomer" FromRole="Customer" ToRole="Cart" />
-          <NavigationProperty Name="Orders" Relationship="Kfe_Fresh_DBModel.FK_Orders_ToCustomers" FromRole="Customer" ToRole="Order" />
         </EntityType>
         <EntityType Name="DeliveryPincode">
           <Key>
@@ -354,24 +344,10 @@
           <Property Name="ProductId" Type="Int32" Nullable="false" />
           <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="Amount" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="OrderId" Type="Int32" />
           <Property Name="Extras" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Order" Relationship="Kfe_Fresh_DBModel.FK_OrderItem_ToOrders" FromRole="OrderItem" ToRole="Order" />
           <NavigationProperty Name="Product" Relationship="Kfe_Fresh_DBModel.FK_OrderItem_ToProducts" FromRole="OrderItem" ToRole="Product" />
-        </EntityType>
-        <EntityType Name="Order">
-          <Key>
-            <PropertyRef Name="OrderId" />
-          </Key>
-          <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CustomerId" Type="Int32" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Price" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Extras" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Customer" Relationship="Kfe_Fresh_DBModel.FK_Orders_ToCustomers" FromRole="Order" ToRole="Customer" />
-          <NavigationProperty Name="OrderItems" Relationship="Kfe_Fresh_DBModel.FK_OrderItem_ToOrders" FromRole="Order" ToRole="OrderItem" />
+          <NavigationProperty Name="Order" Relationship="Kfe_Fresh_DBModel.FK_OrderItem_ToOrders" FromRole="OrderItem" ToRole="Order" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -395,18 +371,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
-        <Association Name="FK_Cart_ToCustomer">
-          <End Type="Kfe_Fresh_DBModel.Customer" Role="Customer" Multiplicity="1" />
-          <End Type="Kfe_Fresh_DBModel.Cart" Role="Cart" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="CustomerId" />
-            </Principal>
-            <Dependent Role="Cart">
-              <PropertyRef Name="CustomerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Cart_ToProducts">
           <End Type="Kfe_Fresh_DBModel.Product" Role="Product" Multiplicity="1" />
           <End Type="Kfe_Fresh_DBModel.Cart" Role="Cart" Multiplicity="*" />
@@ -443,6 +407,62 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_OrderItem_ToProducts">
+          <End Type="Kfe_Fresh_DBModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="Kfe_Fresh_DBModel.OrderItem" Role="OrderItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderItem">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Pin" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Verified" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Carts" Relationship="Kfe_Fresh_DBModel.FK_Cart_ToCustomer" FromRole="Customer" ToRole="Cart" />
+          <NavigationProperty Name="Orders" Relationship="Kfe_Fresh_DBModel.FK_Orders_ToCustomers" FromRole="Customer" ToRole="Order" />
+        </EntityType>
+        <Association Name="FK_Cart_ToCustomer">
+          <End Type="Kfe_Fresh_DBModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="Kfe_Fresh_DBModel.Cart" Role="Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Extras" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNumber" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ContactEmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PaymentType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Customer" Relationship="Kfe_Fresh_DBModel.FK_Orders_ToCustomers" FromRole="Order" ToRole="Customer" />
+          <NavigationProperty Name="OrderItems" Relationship="Kfe_Fresh_DBModel.FK_OrderItem_ToOrders" FromRole="Order" ToRole="OrderItem" />
+        </EntityType>
         <Association Name="FK_Orders_ToCustomers">
           <End Type="Kfe_Fresh_DBModel.Customer" Role="Customer" Multiplicity="1" />
           <End Type="Kfe_Fresh_DBModel.Order" Role="Order" Multiplicity="*" />
@@ -456,7 +476,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderItem_ToOrders">
-          <End Type="Kfe_Fresh_DBModel.Order" Role="Order" Multiplicity="1" />
+          <End Type="Kfe_Fresh_DBModel.Order" Role="Order" Multiplicity="0..1" />
           <End Type="Kfe_Fresh_DBModel.OrderItem" Role="OrderItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Order">
@@ -464,18 +484,6 @@
             </Principal>
             <Dependent Role="OrderItem">
               <PropertyRef Name="OrderId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_OrderItem_ToProducts">
-          <End Type="Kfe_Fresh_DBModel.Product" Role="Product" Multiplicity="1" />
-          <End Type="Kfe_Fresh_DBModel.OrderItem" Role="OrderItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="OrderItem">
-              <PropertyRef Name="ProductId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -511,19 +519,6 @@
                 <ScalarProperty Name="SF" ColumnName="SF" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="Kfe_Fresh_DBModel.Customer">
-              <MappingFragment StoreEntitySet="Customers">
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Pin" ColumnName="Pin" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -565,19 +560,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="Kfe_Fresh_DBModel.Order">
-              <MappingFragment StoreEntitySet="Orders">
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Extras" ColumnName="Extras" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="Kfe_Fresh_DBModel.Product">
               <MappingFragment StoreEntitySet="Products">
@@ -596,6 +578,36 @@
               <MappingFragment StoreEntitySet="SliderImages">
                 <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="Kfe_Fresh_DBModel.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="Verified" ColumnName="Verified" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Pin" ColumnName="Pin" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="Kfe_Fresh_DBModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Extras" ColumnName="Extras" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

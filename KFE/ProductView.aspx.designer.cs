@@ -114,6 +114,15 @@ namespace KFE
         protected global::System.Web.UI.WebControls.Button BtnAddToCart;
 
         /// <summary>
+        /// StockResult control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label StockResult;
+
+        /// <summary>
         /// DeliveryPin control.
         /// </summary>
         /// <remarks>
@@ -132,12 +141,12 @@ namespace KFE
         protected global::System.Web.UI.WebControls.Button CheckDeliveryBtn;
 
         /// <summary>
-        /// ResultText control.
+        /// DeliveryResultText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ResultText;
+        protected global::System.Web.UI.WebControls.Label DeliveryResultText;
     }
 }
