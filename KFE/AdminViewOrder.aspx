@@ -102,6 +102,17 @@
                             <i class="ion ion-clipboard mr-1"></i>
                             <b>Total : <%:"₹"+order.Price%></b>
                         </h3>
+                        <div class="row d-flex float-right">
+                            <%if (CanCancel(order.Status))
+                                { %>
+                            <div class="btn-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-print"></i></span>
+                                </div>
+                                <a class="btn btn-sm btn-secondary" href="Invoice.aspx?Order=<%:KFE.MyClass.EncryptDecrypt.Encrypt(HttpUtility.UrlEncode(order.OrderId.ToString())) %>">View Invoice</a>
+                            </div>
+                            <%}%>
+                        </div>
                     </div>
                 </div>
             </div>

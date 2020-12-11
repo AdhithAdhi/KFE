@@ -14,7 +14,7 @@ namespace KFE
 
             Session.Abandon() ;
             Session.Clear();
-            Response.Redirect("/AdminLogin");
+            Response.Redirect("/AdminSignIn");
         }
     }
 }

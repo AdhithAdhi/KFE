@@ -30,7 +30,7 @@ namespace KFE
                 hfe.cmd = new SqlCommand("update AdminLogin set Password=@pa where Id=@id");
 
                 hfe.cmd.Parameters.AddWithValue("@id", Session["adminId"]);
-                hfe.cmd.Parameters.AddWithValue("@pa", Crypto.Hash(NewPassword.Text));
+                hfe.cmd.Parameters.AddWithValue("@pa", Crypto.HashPassword(NewPassword.Text));
                 hfe.setData("Changed");
                 Response.Redirect("/AdminLogout");
             }

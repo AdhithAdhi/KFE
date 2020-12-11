@@ -11,34 +11,43 @@ namespace KFE
 {
 
 
-    public partial class ForgetPassword
+    public partial class AdminSignIn
     {
 
         /// <summary>
-        /// Forget control.
+        /// account control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm Forget;
+        protected global::System.Web.UI.HtmlControls.HtmlForm account;
 
         /// <summary>
-        /// EmailText control.
+        /// UsernameText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox EmailText;
+        protected global::System.Web.UI.WebControls.TextBox UsernameText;
 
         /// <summary>
-        /// RequestBtn control.
+        /// UserPasswordText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button RequestBtn;
+        protected global::System.Web.UI.WebControls.TextBox UserPasswordText;
+
+        /// <summary>
+        /// LoginBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button LoginBtn;
     }
 }

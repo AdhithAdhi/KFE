@@ -2,21 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 
 namespace KFE.MyClass
 {
     public class AdminController
     {
-        public string IsAdminExistBy(string userName, string password)
+        public AdminDetails IsAdminExistBy(string userName, string password)
         {
-            var result = "";
+            AdminDetails result = null;
             using (Kfe_Fresh_DBEntities dc = new Kfe_Fresh_DBEntities())
             {
                 foreach (AdminLogin adm in dc.AdminLogins)
                 {
-                    if (adm.UserName == userName && adm.Password == password)
+                    if (adm.UserName.ToLower().Equals(userName.ToLower()) && Crypto.VerifyHashedPassword(adm.Password, password))
                     {
-                        result = adm.Id.ToString();
+                        result = new AdminDetails(adm.Id, adm.UserName);
                     }
                 }
             }
@@ -48,6 +49,18 @@ namespace KFE.MyClass
                 }
                 dc.SaveChanges();
             }
+        }
+    }
+    public class AdminDetails
+    {
+        public int Id;
+
+        public string userName;
+
+        public AdminDetails(int id,string username)
+        {
+            Id = id;
+            userName = username;
         }
     }
 }

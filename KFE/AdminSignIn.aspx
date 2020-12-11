@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LoginLayout.Master" AutoEventWireup="true" CodeBehind="AdminLogin.aspx.cs" Inherits="KFE.AdminLogin" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LoginLayout.Master" AutoEventWireup="true" CodeBehind="AdminSignIn.aspx.cs" Inherits="KFE.AdminSignIn" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Admin Login</title>
@@ -15,7 +15,7 @@
             <form id="account" method="post" runat="server">
                 <div class="text-danger"></div>
                 <div class="form-group input-group mb-3">
-                    <asp:TextBox ID="Username" class="form-control" required="" placeholder="Username"
+                    <asp:TextBox ID="UsernameText" class="form-control" required="" placeholder="Username"
                         runat="server" TextMode="Email"></asp:TextBox>
                     <div class="input-group-append">
                         <div class="input-group-text">
@@ -24,15 +24,15 @@
                     </div>
                 </div>
                 <div class="form-group input-group mb-3">
-                    <asp:TextBox ID="UserPassword" class="form-control" placeholder="Password"
-                        runat="server" TextMode="Password"></asp:TextBox>
+                    <asp:TextBox ID="UserPasswordText" class="form-control" placeholder="Password"
+                        runat="server" required=""  TextMode="Password"></asp:TextBox>
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
                         </div>
                     </div>
                 </div>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="UserPassword" CssClass="text-danger" ErrorMessage="Must enter password"></asp:RequiredFieldValidator>
+                <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="UserPassword" CssClass="text-danger" ErrorMessage="Must enter password"></asp:RequiredFieldValidator>--%>
                 <%-- <div class="form-group">
                     <div class="icheck-primary">
                         <input type="checkbox" id="remember">
@@ -43,7 +43,7 @@
                     </div>
                 </div>--%>
                 <div class="form-group">
-                    <asp:Button ID="Login" runat="server" Text="Login" class="btn btn-primary float-right" OnClick="Login_Click" />
+                    <asp:Button ID="LoginBtn" runat="server" Text="Login" class="btn btn-primary float-right" OnClick="Login_Click" />
                 </div>
                 <a href="/">Home Page</a>
             </form>

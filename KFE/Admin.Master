@@ -57,7 +57,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="far fa-bell"></i>
-                        <span class="badge badge-warning navbar-badge">15</span>
+                        <%--<span class="badge badge-warning navbar-badge">15</span>--%>
                     </a>
                 </li>
 
@@ -122,54 +122,65 @@
                                 <i class="nav-icon fas fa-shopping-cart"></i>
                                 <p>
                                     Orders
-               
                                     <i class="right fas fa-angle-left"></i>
+                                    <span class="right badge badge-warning">New</span>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="OrdersProcessing.aspx" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Processing</p>
+                                        <i class="far fa-circle nav-icon text-danger"></i>
+                                        <p>New Orders</p>
+                                        <span class="badge badge-danger right"><%:orderController.GetNewOrdersCount() %></span>
                                     </a>
                                 </li>
                                 <li class="nav-item has-treeview">
                                     <a href="OrdersAccepted.aspx" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Accepted
-                                            <i class="right fas nav-icon"></i>
+                                        <i class="far fa-circle nav-icon text-warning"></i>
+                                        <p>
+                                            Accepted
                                         </p>
+                                        
+                                        <span class="badge badge-warning right"><%:orderController.GetAcceptedOrdersCount() %></span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="OrderPacked.aspx" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="far fa-circle nav-icon text-warning"></i>
                                         <p>Packed</p>
+                                        
+                                        <span class="badge badge-warning right"><%:orderController.GetPackedOrdersCount() %></span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="OrderShipped.aspx" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="far fa-circle nav-icon text-info"></i>
                                         <p>Shipped</p>
+                                        
+                                        <span class="badge badge-info right"><%:orderController.GetShippedOrdersCount() %></span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="OrderDeliverd.aspx" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="far fa-circle nav-icon text-info"></i>
                                         <p>Deliverd</p>
+                                        
+                                        <span class="badge badge-info right"><%:orderController.GetDeliverdOrdersCount() %></span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="CancelledOrders.aspx" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="far fa-circle nav-icon text-warning"></i>
                                         <p>Cancelled</p>
+                                        
+                                        <span class="badge badge-warning right"><%:orderController.GetDeliverdOrdersCount() %></span>
                                     </a>
                                 </li>
                             </ul>
                         </li>
                         <li class="nav-item">
                             <a href="/AdminDeliveryArea" class="nav-link">
-                                <i class="nav-icon fas fa-map-pin"></i>
+                                <i class="nav-icon fas fa-map-marker-alt"></i>
                                 <p>
                                     Delivery Points
                                 </p>
@@ -258,30 +269,31 @@
         </footer>
     </div>
     <!-- ./wrapper -->
-    <!-- REQUIRED SCRIPTS -->
+      <!-- REQUIRED SCRIPTS -->
       <!-- jQuery -->
     <script src="template/Admin/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="template/Admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE -->
     <script src="template/Admin/dist/js/adminlte.js"></script>
-    <script>
-  $(function () {
-    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
-      event.preventDefault();
-      $(this).ekkoLightbox({
-        alwaysShowClose: true
-      });
-    });
-
-    $('.filter-container').filterizr({gutterPixels: 3});
-    $('.btn[data-filter]').on('click', function() {
-      $('.btn[data-filter]').removeClass('active');
-      $(this).addClass('active');
-    });
-  })
-</script>
+    
     <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
     </asp:ContentPlaceHolder>
+   <%-- <script>
+        $(function () {
+            $(document).on('click', '[data-toggle="lightbox"]', function (event) {
+                event.preventDefault();
+                $(this).ekkoLightbox({
+                    alwaysShowClose: true
+                });
+            });
+
+            $('.filter-container').filterizr({ gutterPixels: 3 });
+            $('.btn[data-filter]').on('click', function () {
+                $('.btn[data-filter]').removeClass('active');
+                $(this).addClass('active');
+            });
+        })
+    </script>--%>
 </body>
 </html>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 
 namespace KFE.MyClass
 {
@@ -43,7 +44,7 @@ namespace KFE.MyClass
             {
                 foreach(Customer cus in dc.Customers)
                 {
-                    if((cus.Email==userName||cus.Phone==userName)&& cus.Password == password)
+                    if ((cus.Email.ToLower().Equals(userName.ToLower()) || cus.Phone == userName) && Crypto.VerifyHashedPassword(cus.Password, password))
                     {
                         result = cus.CustomerId;
                     }

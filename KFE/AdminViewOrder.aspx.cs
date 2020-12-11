@@ -27,7 +27,7 @@ namespace KFE
                     }
                     else
                     {
-                        Response.Redirect("/Shop");
+                        Response.Redirect("/AdminHome");
                     }
                 }
                 else
@@ -38,7 +38,7 @@ namespace KFE
             }
             else
             {
-                Response.Redirect("/Shop");
+                Response.Redirect("/AdminHome");
             }
             if (!IsPostBack)
             {
@@ -64,6 +64,15 @@ namespace KFE
         string Decrypt(string value)
         {
             return MyClass.EncryptDecrypt.Decrypt(value);
+        }
+        protected bool CanCancel(string status)
+        {
+            bool result = false;
+            if (!status.ToLower().Contains("cancel") || !status.Contains("deliver") || !status.Contains("ship"))
+            {
+                result = true;
+            }
+            return result;
         }
     }
 }

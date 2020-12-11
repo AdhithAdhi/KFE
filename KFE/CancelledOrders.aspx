@@ -14,7 +14,7 @@
                 <div class="card-body table-responsive p-0">
 
 
-                    <asp:GridView ID="GridView1" class="table table-hover text-nowrap" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="OrderId" DataSourceID="SqlDataSource1" CssClass="table table-hover text-nowrap" OnSelectedIndexChanging="OrderView" OnRowEditing="OrderAccept">
+                    <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="OrderId" DataSourceID="SqlDataSource1" CssClass="table table-hover text-nowrap" OnSelectedIndexChanging="OrderView" OnRowEditing="OrderAccept" BorderStyle="None" EmptyDataText="No cancelled orders">
                         <Columns>
                             <asp:BoundField DataField="OrderId" HeaderText="OrderId" SortExpression="OrderId" InsertVisible="False" ReadOnly="True" />
                             <asp:BoundField DataField="Date" HeaderText="Date" SortExpression="Date" />
