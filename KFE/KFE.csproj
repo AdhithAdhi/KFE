@@ -241,17 +241,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AddToCart.aspx" />
-    <Content Include="AdiminCategories.aspx" />
-    <Content Include="AdminChangePass.aspx" />
-    <Content Include="AdminDeliveryArea.aspx" />
-    <Content Include="AdminGallery.aspx" />
-    <Content Include="AdminHome.aspx" />
-    <Content Include="AdminLogin.aspx" />
-    <Content Include="AdminLogout.aspx" />
-    <Content Include="AdminOrders.aspx" />
-    <Content Include="AdminViewOrder.aspx" />
     <Content Include="CancelOrder.aspx" />
-    <Content Include="CancelledOrders.aspx" />
     <Content Include="ChangePassword.aspx" />
     <Content Include="CheckOut.aspx" />
     <Content Include="ForgetPassword.aspx" />
@@ -276,14 +266,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Admin.Master" />
-    <Content Include="Index2.aspx" />
     <Content Include="Oops.aspx" />
-    <Content Include="OrderDeliverd.aspx" />
-    <Content Include="OrderPacked.aspx" />
-    <Content Include="OrdersAccepted.aspx" />
-    <Content Include="OrderShipped.aspx" />
-    <Content Include="OrdersProcessing.aspx" />
     <Content Include="ProductView.aspx" />
     <Content Include="KfeModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -314,7 +297,6 @@
     </None>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Images\KFE_128.png" />
-    <Content Include="AdminProductView.aspx" />
     <Content Include="MyOrders.aspx" />
     <Content Include="MyPersonalInfo.aspx" />
     <Content Include="Register.aspx" />
@@ -350,7 +332,6 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
-    <Content Include="AdminSliderView.aspx" />
     <Content Include="template\Admin\build\config\postcss.config.js" />
     <Content Include="template\Admin\build\config\rollup.config.js" />
     <Content Include="template\Admin\build\js\AdminLTE.js" />
@@ -2203,79 +2184,8 @@
     <Compile Include="AddToCart.aspx.designer.cs">
       <DependentUpon>AddToCart.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdiminCategories.aspx.cs">
-      <DependentUpon>AdiminCategories.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdiminCategories.aspx.designer.cs">
-      <DependentUpon>AdiminCategories.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin.Master.cs">
-      <DependentUpon>Admin.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin.Master.designer.cs">
-      <DependentUpon>Admin.Master</DependentUpon>
-    </Compile>
-    <Compile Include="AdminChangePass.aspx.cs">
-      <DependentUpon>AdminChangePass.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminChangePass.aspx.designer.cs">
-      <DependentUpon>AdminChangePass.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AdminDeliveryArea.aspx.cs">
-      <DependentUpon>AdminDeliveryArea.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminDeliveryArea.aspx.designer.cs">
-      <DependentUpon>AdminDeliveryArea.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AdminGallery.aspx.cs">
-      <DependentUpon>AdminGallery.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminGallery.aspx.designer.cs">
-      <DependentUpon>AdminGallery.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AdminHome.aspx.cs">
-      <DependentUpon>AdminHome.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminHome.aspx.designer.cs">
-      <DependentUpon>AdminHome.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AdminLogin.aspx.cs">
-      <DependentUpon>AdminLogin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminLogin.aspx.designer.cs">
-      <DependentUpon>AdminLogin.aspx</DependentUpon>
-    </Compile>
     <Compile Include="AdminLogin.cs">
       <DependentUpon>KfeModel.tt</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminLogout.aspx.cs">
-      <DependentUpon>AdminLogout.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminLogout.aspx.designer.cs">
-      <DependentUpon>AdminLogout.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AdminOrders.aspx.cs">
-      <DependentUpon>AdminOrders.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminOrders.aspx.designer.cs">
-      <DependentUpon>AdminOrders.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AdminViewOrder.aspx.cs">
-      <DependentUpon>AdminViewOrder.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminViewOrder.aspx.designer.cs">
-      <DependentUpon>AdminViewOrder.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -2286,13 +2196,6 @@
     </Compile>
     <Compile Include="CancelOrder.aspx.designer.cs">
       <DependentUpon>CancelOrder.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CancelledOrders.aspx.cs">
-      <DependentUpon>CancelledOrders.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CancelledOrders.aspx.designer.cs">
-      <DependentUpon>CancelledOrders.aspx</DependentUpon>
     </Compile>
     <Compile Include="ChangePassword.aspx.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
@@ -2365,13 +2268,6 @@
     <Compile Include="HitCounter.cs">
       <DependentUpon>KfeModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Index2.aspx.cs">
-      <DependentUpon>Index2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Index2.aspx.designer.cs">
-      <DependentUpon>Index2.aspx</DependentUpon>
-    </Compile>
     <Compile Include="MyClass\AdminController.cs" />
     <Compile Include="MyClass\CartController.cs" />
     <Compile Include="MyClass\DeliveryPointsController.cs" />
@@ -2387,43 +2283,8 @@
     <Compile Include="Oops.aspx.designer.cs">
       <DependentUpon>Oops.aspx</DependentUpon>
     </Compile>
-    <Compile Include="OrderDeliverd.aspx.cs">
-      <DependentUpon>OrderDeliverd.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OrderDeliverd.aspx.designer.cs">
-      <DependentUpon>OrderDeliverd.aspx</DependentUpon>
-    </Compile>
     <Compile Include="OrderItem.cs">
       <DependentUpon>KfeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="OrderPacked.aspx.cs">
-      <DependentUpon>OrderPacked.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OrderPacked.aspx.designer.cs">
-      <DependentUpon>OrderPacked.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OrdersAccepted.aspx.cs">
-      <DependentUpon>OrdersAccepted.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OrdersAccepted.aspx.designer.cs">
-      <DependentUpon>OrdersAccepted.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OrderShipped.aspx.cs">
-      <DependentUpon>OrderShipped.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OrderShipped.aspx.designer.cs">
-      <DependentUpon>OrderShipped.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OrdersProcessing.aspx.cs">
-      <DependentUpon>OrdersProcessing.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OrdersProcessing.aspx.designer.cs">
-      <DependentUpon>OrdersProcessing.aspx</DependentUpon>
     </Compile>
     <Compile Include="ProductView.aspx.cs">
       <DependentUpon>ProductView.aspx</DependentUpon>
@@ -2468,13 +2329,6 @@
     <Compile Include="MyClass\FtpFileUpload.cs" />
     <Compile Include="MyClass\GalleryController.cs" />
     <Compile Include="MyClass\HitCount.cs" />
-    <Compile Include="AdminProductView.aspx.cs">
-      <DependentUpon>AdminProductView.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminProductView.aspx.designer.cs">
-      <DependentUpon>AdminProductView.aspx</DependentUpon>
-    </Compile>
     <Compile Include="MyClass\ProductsController.cs" />
     <Compile Include="MyClass\SliderController.cs" />
     <Compile Include="MyClass\UserController.cs" />
@@ -2534,13 +2388,6 @@
       <DependentUpon>Shop.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AdminSliderView.aspx.cs">
-      <DependentUpon>AdminSliderView.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminSliderView.aspx.designer.cs">
-      <DependentUpon>AdminSliderView.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>

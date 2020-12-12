@@ -27,18 +27,22 @@ namespace KFE
         protected void LoginBtn_Click(object sender, EventArgs e)
         {
             var username = Username.Text;
-            var password = Crypto.Hash(UserPassword.Text);
+            var password = UserPassword.Text;
             var result = userController.IsCustomerExistBy(username, password);
-            if (userController.hasPendingCustomerById(Convert.ToInt32(result)))
-            {
-                Response.Redirect("/VerificationError?Validate=" + MyClass.EncryptDecrypt.Encrypt(result.ToString()));
-                //return;
-            }
+            
             if (result!=0)
             {
-                Session["name"] = "user";
-                Session["customerId"] = result;
-                Response.Redirect("/Shop");
+                if (userController.hasPendingCustomerById(Convert.ToInt32(result)))
+                {
+                    Response.Redirect("/VerificationError?Validate=" + MyClass.EncryptDecrypt.Encrypt(result.ToString()));
+                    //return;
+                }
+                else
+                {
+                    Session["name"] = "user";
+                    Session["customerId"] = result;
+                    Response.Redirect("/Shop");
+                }
 
             }
             else

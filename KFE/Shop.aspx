@@ -34,7 +34,7 @@
                     {
             %>
             <div class="carousel-item active">
-                <img class="d-block w-100" src="https://static.kfefresh.com/Images/Sliders/<%:Sliders[i].ImagePath %>" alt="" />
+                <img class="d-block w-100" src="http://static.kfefresh.com/Images/Sliders/<%:Sliders[i].ImagePath %>" alt="" />
             </div>
             <%
                 }
@@ -43,7 +43,7 @@
             %>
             <!-- Item -->
             <div class="carousel-item">
-                <img class="d-block w-100" src="https://static.kfefresh.com/Images/Sliders/<%:Sliders[i].ImagePath %>" alt="" />
+                <img class="d-block w-100" src="http://static.kfefresh.com/Images/Sliders/<%:Sliders[i].ImagePath %>" alt="" />
             </div>
             <!-- // Item -->
             <%
