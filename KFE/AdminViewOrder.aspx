@@ -109,7 +109,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-print"></i></span>
                                 </div>
-                                <a class="btn btn-sm btn-secondary" href="Invoice.aspx?Order=<%:KFE.MyClass.EncryptDecrypt.Encrypt(HttpUtility.UrlEncode(order.OrderId.ToString())) %>">View Invoice</a>
+                                <a class="btn btn-sm btn-secondary" href="https://kfefresh.com/Invoice.aspx?Order=<%:KFE.MyClass.EncryptDecrypt.Encrypt(HttpUtility.UrlEncode(order.OrderId.ToString())) %>">View Invoice</a>
                             </div>
                             <%}%>
                         </div>

@@ -16,6 +16,10 @@ namespace KFE
         MyClass.ProductsController productsController = new MyClass.ProductsController();
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["adminId"] == null)
+            {
+                Response.Redirect("/AdminSignIn");
+            }
             if (!string.IsNullOrEmpty(Request.QueryString.ToString()))
             {
                 var ordId = Decrypt(HttpUtility.UrlDecode(Request.QueryString["Order"]));

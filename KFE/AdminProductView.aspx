@@ -78,12 +78,12 @@
         <!-- /.card-header -->
         <div class="card-body">
 
-            <asp:GridView class="table table-bordered table-striped" ID="GridView1" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="SqlDataSource1" OnRowDeleting="SliderRowDeleting">
+            <asp:GridView class="table table-bordered table-striped" ID="GridView1" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="SqlDataSource1" OnRowDeleting="SliderRowDeleting" OnSelectedIndexChanging="ProductSelect">
                 <Columns>
                     <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title" />
                     <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" />
                     <asp:BoundField DataField="StockCount" HeaderText="StockCount" SortExpression="StockCount" />
-                    <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" ButtonType="Button">
+                    <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" ButtonType="Button" SelectText="View" ShowSelectButton="True">
                     <ControlStyle CssClass="btn btn-primary" />
                     </asp:CommandField>
                 </Columns>

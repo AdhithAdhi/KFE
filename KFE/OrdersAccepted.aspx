@@ -8,6 +8,7 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Orders Accepted</h3>
+                    <a href="OrderPacked.aspx" class="btn btn-primary float-right">Orders Packed</a>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body table-responsive p-0">

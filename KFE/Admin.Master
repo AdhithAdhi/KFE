@@ -173,7 +173,7 @@
                                         <i class="far fa-circle nav-icon text-warning"></i>
                                         <p>Cancelled</p>
                                         
-                                        <span class="badge badge-warning right"><%:orderController.GetDeliverdOrdersCount() %></span>
+                                        <span class="badge badge-warning right"><%:orderController.GetCancelledOrdersCount() %></span>
                                     </a>
                                 </li>
                             </ul>

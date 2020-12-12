@@ -77,5 +77,12 @@ namespace KFE
             }
 
         }
+
+        protected void ProductSelect(object sender, GridViewSelectEventArgs e)
+        {
+            int id = Convert.ToInt16(GridView1.DataKeys[e.NewSelectedIndex].Values["Id"].ToString());
+
+            Response.Redirect("https://Kfefresh.com/ProductView?Product=" + MyClass.EncryptDecrypt.Encrypt(id.ToString()));
+        }
     }
 }
