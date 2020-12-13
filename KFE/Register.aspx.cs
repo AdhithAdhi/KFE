@@ -24,7 +24,7 @@ namespace KFE
             var mail = UserMail.Text;
             var phone = PhoneText.Text;
             var adr = adr_Textarea.Text;
-            var pass = Crypto.Hash(UserPassword.Text);
+            var pass = Crypto.HashPassword(UserPassword.Text);
             var pin = Convert.ToInt32(PinCodeTextBox.Text);
             if (userController.EmailAlreadyExist(mail))
             {

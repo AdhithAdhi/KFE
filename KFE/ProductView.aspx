@@ -109,8 +109,8 @@
                                 <a href="http://fb.com/kfefresh.kerala.1" target="_blank" class="text-dark">
                                     <i class="fab fa-facebook-square fa-2x"></i>
                                 </a>
-                                <a href="mailto:info@kfefresh.com" class="text-dark">
-                                    <i class="fab fa-twitter-square fa-2x"></i>
+                                <a href="" class="text-dark">
+                                    <i class="fab fa-instagram-square fa-2x"></i>
                                 </a>
                                 <a href="mailto:info@kfefresh.com" class="text-dark">
                                     <i class="fas fa-envelope-square fa-2x"></i>

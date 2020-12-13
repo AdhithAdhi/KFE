@@ -50,6 +50,13 @@
                             <%} %>
                         </label>
                     </div>
+                    
+                    <div class="mt-2">
+                        <label class="text-capitalize">
+                            Payment Type :
+                                        <b class="text-info text-bold"><%:order.PaymentType%></b>
+                        </label>
+                    </div>
                     <div class="mt-2">
 
                         <h2 class="lead text-bold"><b>Order Summery </b></h2>
@@ -99,12 +106,6 @@
 
                     </div>
 
-                    <div class="mt-2">
-                        <label class="text-capitalize">
-                            Payment Type :
-                                        <b class="text-info text-bold"><%:order.PaymentType%></b>
-                        </label>
-                    </div>
                 </div>
 
                 <div class="card-footer">

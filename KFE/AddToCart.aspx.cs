@@ -42,9 +42,15 @@ namespace KFE
             {
                 Response.Redirect("/Login");
             }
+            int cId = Convert.ToInt32(Session["customerId"].ToString());
+            if (cartController.GetAllCartCountByUser(cId) >= 20)
+            {
+                Page.Controls.Add(MyClass.Message.Messagebox("Cart is Full"));
+                return;
+            }
             cartController.AddToCart(new Cart()
             {
-                CustomerId = Convert.ToInt32(Session["customerId"].ToString()),
+                CustomerId = cId,
                 ProductId = ProductId,
                 Count = (decimal)1,
                 Extras = "",

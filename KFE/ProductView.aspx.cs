@@ -75,18 +75,25 @@ namespace KFE
 
         protected void BtnAddToCart_Click(object sender, EventArgs e)
         {
+            int cId = 0;
+            int.TryParse(Session["customerId"].ToString(), out cId);
             if (ProductId == 0)
             {
                 Response.Redirect("/Shop");
             }
-            if (Session["customerId"] != null)
+            if (cId != 0)
             {
-                if (cartController.HasAllReadyExist(Convert.ToInt32(Session["customerId"].ToString()), ProductId))
+                if (cartController.HasAllReadyExist(cId, ProductId))
                 {
                     Response.Redirect("/MyCart");
                 }
                 else
                 {
+                    if (cartController.GetAllCartCountByUser(cId) >= 20)
+                    {
+                        Page.Controls.Add(MyClass.Message.Messagebox("Cart is Full"));
+                        return;
+                    }
                     var value = "";
                     if (NeedCheckBox.Checked)
                     {
@@ -96,7 +103,7 @@ namespace KFE
                     {
                         cartController.AddToCart(new Cart()
                         {
-                            CustomerId = Convert.ToInt32(Session["customerId"].ToString()),
+                            CustomerId = cId,
                             ProductId = ProductId,
                             Count = Convert.ToDecimal(QantityText.Text),
                             Extras = value,
@@ -147,5 +154,6 @@ namespace KFE
             var prds = productsController.GetAllProducts().OrderBy(x => rnd.Next()).Take(3);
             return prds.ToList();
         }
+        
     }
 }

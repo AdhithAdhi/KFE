@@ -44,6 +44,20 @@ namespace KFE.MyClass
             }
             return order;
         }
+
+        public  int GetAllOrdersCountByUser(int CustomerId)
+        {
+            int ordersCount = 0;
+
+            using (Kfe_Fresh_DBEntities dc = new Kfe_Fresh_DBEntities())
+            {
+                ordersCount = dc.Orders.Where(x => x.CustomerId.Equals(CustomerId)).Count();
+
+
+            }
+            return ordersCount;
+        }
+
         public void saveOrderBy(Order order)
         {
             Order odr = new Order();

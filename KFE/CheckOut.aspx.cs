@@ -14,6 +14,7 @@ namespace KFE
         MyClass.ProductsController productsController = new MyClass.ProductsController();
         MyClass.UserController userController = new MyClass.UserController();
         MyClass.OrderController orderController = new MyClass.OrderController();
+        MyClass.DeliveryPointsController deliveryPinController = new MyClass.DeliveryPointsController();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -71,54 +72,79 @@ namespace KFE
             {
                 Response.Redirect("/Login");
             }
-            var haveNoStock = false;
-            for (int i = 0; i < carts.Count; i++)
+            if (hasDelivery())
             {
-                if (IsProductOutOfStock(carts[i].ProductId))
+                var haveNoStock = false;
+                for (int i = 0; i < carts.Count; i++)
                 {
-                    haveNoStock = true;
+                    if (IsProductOutOfStock(carts[i].ProductId))
+                    {
+                        haveNoStock = true;
+                    }
                 }
+                if (haveNoStock == true)
+                {
+                    Response.Redirect("/MyCart");
+                    return;
+                }
+                List<OrderItem> orderItems = new List<OrderItem>();
+                foreach (Cart cart in carts)
+                {
+                    orderItems.Add(new OrderItem()
+                    {
+                        ProductId = cart.ProductId,
+                        Quantity = cart.Count,
+                        Amount = cart.Count * productsController.GetProductBy(cart.ProductId).Price,
+                        Extras = cart.Extras,
+                    });
+
+                    var product = productsController.GetProductBy(cart.ProductId);
+                    product.StockCount -= cart.Count;
+                    productsController.ProductChangeWith(product);
+                }
+
+                orderController.AddToOrders(new Order()
+                {
+                    Date = DateTime.Now,
+                    CustomerId = Convert.ToInt32(Session["customerId"].ToString()),
+                    Price = Convert.ToDecimal(TotalText.Text),
+                    Status = "Prosessing..",
+                    Address = NameText.Text + ", " + adr_Textarea.Text + ", " + PinText.Text,
+                    ContactEmail = EmailText.Text,
+                    ContactNumber = MobileText.Text,
+                    OrderItems = orderItems,
+                    PaymentType = "Cash on Delivery"
+                });
+                foreach (Cart cart in carts)
+                {
+                    cartController.DeleteById(cart.CartId);
+
+                }
+                Response.Redirect("/MyOrders");
             }
-            if (haveNoStock == true)
+            else
             {
-                Response.Redirect("/MyCart");
                 return;
             }
-            List<OrderItem> orderItems = new List<OrderItem>();
-            foreach (Cart cart in carts)
-            {
-                orderItems.Add(new OrderItem()
-                {
-                    ProductId = cart.ProductId,
-                    Quantity = cart.Count,
-                    Amount = cart.Count * productsController.GetProductBy(cart.ProductId).Price,
-                    Extras = cart.Extras,
-                });
-
-                var product = productsController.GetProductBy(cart.ProductId);
-                product.StockCount -= cart.Count;
-                productsController.ProductChangeWith(product);
-            }
-
-            orderController.AddToOrders(new Order()
-            {
-                Date = DateTime.Now,
-                CustomerId = Convert.ToInt32(Session["customerId"].ToString()),
-                Price = Convert.ToDecimal(TotalText.Text),
-                Status = "Prosessing..",
-                Address = NameText.Text+", "+adr_Textarea.Text+", "+PinText.Text,
-                ContactEmail=EmailText.Text,
-                ContactNumber=MobileText.Text,
-                OrderItems = orderItems,
-                PaymentType="Cash on Delivery"
-            });
-            foreach (Cart cart in carts)
-            {
-                cartController.DeleteById(cart.CartId);
-
-            }
-            Response.Redirect("/MyOrders");
         }
+
+        private bool hasDelivery()
+        {
+            bool result = true;
+            int enterdPin = Convert.ToInt32(PinText.Text);
+            if (deliveryPinController.hasPin(enterdPin))
+            {
+                DeliveryResultText.Text = "Delivery is availabale at your place"; 
+                result = true;
+            }
+            else
+            {
+                DeliveryResultText.Text = "Delivery is not availabale at your place"; 
+                result = false;
+            }
+            return result;
+        }
+
         protected bool IsProductOutOfStock(int pId)
         {
             var result = false;

@@ -45,9 +45,10 @@ namespace KFE
         protected void ChangeBtn_Click(object sender, EventArgs e)
         {
             Customer customer = userController.GetCustomerBy(CustomerId);
-            customer.Password = Crypto.Hash(NewPasswordText.Text);
+            customer.Password = Crypto.HashPassword(NewPasswordText.Text);
             customer.Verified = true;
             userController.UpdateCustomerBy(customer);
+            Response.Redirect("/ResetSuccess");
         }
         protected bool ValidateUrl()
         {

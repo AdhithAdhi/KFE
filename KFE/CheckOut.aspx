@@ -50,6 +50,8 @@
                                         <label for="exampleInputEmail1">Pin Number</label>
                                         <asp:TextBox ID="PinText" class="form-control" required="" placeholder="Pin Number"
                                             runat="server" TextMode="Number"></asp:TextBox>
+
+                                        <asp:Label CssClass="text-danger" ID="DeliveryResultText" Text="" runat="server"></asp:Label>
                                     </div>
                                 </div>
                                 <!-- /.card-body -->
@@ -128,8 +130,8 @@
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            
-                            <asp:Button CssClass="btn btn-warning btn-block" ID="CheckOut2" runat="server" Text="CheckOut"  OnClick="CheckOut_Click" />
+
+                            <asp:Button CssClass="btn btn-warning btn-block" ID="CheckOut2" runat="server" Text="CheckOut" OnClick="CheckOut_Click" />
                         </div>
                     </div>
                 </section>

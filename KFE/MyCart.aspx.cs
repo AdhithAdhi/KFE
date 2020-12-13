@@ -73,5 +73,17 @@ namespace KFE
             }
             return result;
         }
+        protected bool ContainsOutOfStockProducts()
+        {
+            var haveNoStock = false;
+            for (int i = 0; i < carts.Count; i++)
+            {
+                if (IsProductOutOfStock(carts[i].ProductId))
+                {
+                    haveNoStock = true;
+                }
+            }
+            return haveNoStock;
+        }
     }
 }

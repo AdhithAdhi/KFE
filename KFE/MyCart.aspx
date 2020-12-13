@@ -52,7 +52,9 @@
                                     <div class="card-body pt-0">
                                         <div class="row">
                                             <div class="col-5 text-center mt-3">
-                                                <img src="https://static.kfefresh.com/Images/Products/<%:GetProdyctById(cart.ProductId).ImagePath%>" alt="" class="img-circle img-fluid">
+                                                <a href="ProductView.aspx?Product=<%:KFE.MyClass.EncryptDecrypt.Encrypt(HttpUtility.UrlEncode(cart.ProductId.ToString())) %>">
+                                                    <img src="https://static.kfefresh.com/Images/Products/<%:GetProdyctById(cart.ProductId).ImagePath%>" alt="" class="img-circle img-fluid">
+                                                </a>
                                             </div>
                                             <div class="col-7 mt-3">
                                                 <h2 class="lead text-bold"><b><%:GetProdyctById(cart.ProductId).Title%></b></h2>
@@ -79,12 +81,12 @@
 
                                                     <p class="text-muted text-sm">*After Cleaning 100 grams of 1 Kg will lose.</p>
                                                     <%if (IsProductOutOfStock(cart.ProductId))
-                                                    { %>
+                                                        { %>
 
                                                     <h2 class="lead text-bold"><b>Out of Stock</b></h2>
                                                     <%}
-                                                    else
-                                                    { %>
+                                                        else
+                                                        { %>
 
                                                     <h2 class="lead text-bold"><b>Total :₹<%:GetProdyctById(cart.ProductId).Price * cart.Count%></b></h2>
 
@@ -118,7 +120,12 @@
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer clearfix">
+                                <%if (!ContainsOutOfStockProducts())
+                                    { %>
+
                                 <asp:Button ID="BuyBtn" runat="server" Text="Buy Items" class="btn btn-info float-right" OnClick="BuyBtn_Click" />
+
+                                <%} %>
                             </div>
                         </div>
                     </div>
@@ -160,7 +167,12 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <asp:Button ID="Button1" runat="server" Text="Buy Items" class="btn btn-info btn-block" OnClick="BuyBtn_Click" />
+                            <%if (!ContainsOutOfStockProducts())
+                                { %>
+
+                            <asp:Button ID="Button1" runat="server" Text="Buy Items" class="btn btn-info float-right" OnClick="BuyBtn_Click" />
+
+                            <%} %>
                         </div>
                         <!-- /.card-body -->
                     </div>

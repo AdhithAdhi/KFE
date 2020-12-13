@@ -98,35 +98,35 @@
                 </div>
                 <div class="card-body">
                     <label class="text-bold">Feel free to keep in touch with us!</label>
-                    <div  class="m-2">
-                    <i class="fas fa-lg fa-phone-alt mr-2"><small class="text-bold ml-2">+91 81138 11177</small>
-                    </i>
+                    <div class="m-2">
+                        <i class="fas fa-lg fa-phone-alt mr-2"><small class="text-bold ml-2">+91 81138 11177</small>
+                        </i>
                     </div>
                     <div class="m-2">
-                    <i class="fas fa-lg fa-phone-alt mr-2"><small class="text-bold ml-2">+91 95261 80763</small>
-                    </i>
+                        <i class="fas fa-lg fa-phone-alt mr-2"><small class="text-bold ml-2">+91 95261 80763</small>
+                        </i>
                     </div>
                     <div class="m-2">
-                    <i class="fas fa-lg fa-mail-bulk mr-2"><small class="text-bold ml-2">kfefresh@gmail.com</small>
-                    </i>
+                        <i class="fas fa-lg fa-mail-bulk mr-2"><small class="text-bold ml-2">kfefresh@gmail.com</small>
+                        </i>
                     </div>
                     <div class="m-2">
-                    <i class="fas fa-lg fa-globe mr-2"><small class="text-bold ml-2">Kfefresh.com</small>
-                    </i>
+                        <i class="fas fa-lg fa-globe mr-2"><small class="text-bold ml-2">Kfefresh.com</small>
+                        </i>
                     </div>
                 </div>
                 <div class="card-footer">
                     <div class="product-share">
-                        <a href="#" class="text-gray">
+                        <a href="http://fb.com/kfefresh.kerala.1" target="_blank" class="text-dark">
                             <i class="fab fa-facebook-square fa-2x"></i>
                         </a>
-                        <a href="#" class="text-gray">
-                            <i class="fab fa-twitter-square fa-2x"></i>
+                        <a href="#" class="text-dark">
+                            <i class="fab fa-instagram-square fa-2x"></i>
                         </a>
-                        <a href="#" class="text-gray">
+                        <a href="mailto:info@kfefresh.com" class="text-dark">
                             <i class="fas fa-envelope-square fa-2x"></i>
                         </a>
-                        <a href="#" class="text-gray">
+                        <a href="#" class="text-dark">
                             <i class="fas fa-rss-square fa-2x"></i>
                         </a>
                     </div>
@@ -136,5 +136,4 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Scripts" runat="server">
-    
 </asp:Content>

@@ -36,9 +36,9 @@ namespace KFE
             }
             var newPass = NePass.Text;
             var customer = userController.GetCustomerBy(Convert.ToInt32(Session["customerId"].ToString()));
-            if (Crypto.Hash(CuPass.Text) == customer.Password)
+            if (Crypto.VerifyHashedPassword(customer.Password, CuPass.Text))
             {
-                customer.Password = Crypto.Hash(newPass);
+                customer.Password = Crypto.HashPassword(newPass);
                 userController.UpdateCustomerPassWordBy(customer);
 
                 Response.Redirect("/Login");

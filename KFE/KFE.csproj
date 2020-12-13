@@ -302,6 +302,7 @@
     <Content Include="Register.aspx" />
     <Content Include="RemoveFromCart.aspx" />
     <Content Include="ResetPassword.aspx" />
+    <Content Include="ResetSuccess.aspx" />
     <Content Include="Search.aspx" />
     <Content Include="Shop.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -2372,6 +2373,13 @@
     </Compile>
     <Compile Include="ResetPassword.aspx.designer.cs">
       <DependentUpon>ResetPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResetSuccess.aspx.cs">
+      <DependentUpon>ResetSuccess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResetSuccess.aspx.designer.cs">
+      <DependentUpon>ResetSuccess.aspx</DependentUpon>
     </Compile>
     <Compile Include="Search.aspx.cs">
       <DependentUpon>Search.aspx</DependentUpon>

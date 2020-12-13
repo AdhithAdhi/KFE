@@ -25,7 +25,7 @@
                     <div class="col-12">
                         <%=""%>
                         <h2 class="page-header">
-                            <i class="fas fa-globe"></i>KfeFresh, Inc.
+                            <img src="KFE_128.ico"/>KfeFresh.
          
                             <small class="float-right">Date: <%:order.Date.ToString("dd/MM/yyyy") %></small>
                         </h2>
@@ -38,7 +38,7 @@
                         From
        
                         <address>
-                            <strong>Admin, Inc.</strong><br />
+                            <strong>Kerala Fish Express.</strong><br />
                             KFE, Kilikollur,<br />
                             Chandhanathope, Kollam<br />
                             Phone: (+91) 70 12 524 800<br />

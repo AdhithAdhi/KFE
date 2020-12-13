@@ -31,6 +31,18 @@ namespace KFE.MyClass
             }
             return carts;
         }
+
+        public int GetAllCartCountByUser(int CustomerId)
+        {
+            int cartsCount = 0;
+            using (Kfe_Fresh_DBEntities dc = new Kfe_Fresh_DBEntities())
+            {
+                cartsCount = dc.Carts.Where(x => x.CustomerId.Equals(CustomerId)).Count();
+                
+
+            }
+            return cartsCount;
+        }
         public void DeleteById(int id)
         {
             using (Kfe_Fresh_DBEntities dc = new Kfe_Fresh_DBEntities())
